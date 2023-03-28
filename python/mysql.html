@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<title>Our Funky HTML Page</title>
+<meta name="description" content="Our first page">
+<meta name="keywords" content="html tutorial template">
+<!-- Instanciamos los archivos de PyScript desde su mismo Servidor -->
+<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
+<!-- Formateamos e imprimimos la fecha actual -->
+<py-config>
+    packages = ["statistics", "mysql.connector"]
+  </py-config>
+
+  <py-script>
+    import mysql.connector
+    from statistics import *
+
+    mysqldb = mysql.connector.connect(host="localhost", user="root", password="root", database="db_bazar")
+    mycursor = mysqldb.cursor()
+    #mycursor.execute("SELECT cliente_id,cliente_nombre,cliente_telefono,cliente_direccion FROM tb_cliente")
+    mycursor.execute("SELECT cliente_nombre FROM tb_cliente")
+    records = mycursor.fetchall()
+    print(records)
+    print(mode(records))
+
+  </py-script>
+
+  <py-repl>
+    ice_data
+  </py-repl>
+
+  <div id="graph-area"></div>
+</body>
+</html>
