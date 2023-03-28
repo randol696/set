@@ -65,14 +65,13 @@
                           echo "<tr><td colspan='5'><center>No hay Cursos!</center></td></tr>";
                       }
                   ?>
-
 </div>
 
 </article>
 </section>
 <!-- Footer -->
 <footer>
-  <p>Footer</p>
+  <p>Trabajo final de Graduacion UTP Azuero Estudiantes: Ariel Gonzalez / Randol H Gonzalez</p>
 </footer>
 
 </body>
