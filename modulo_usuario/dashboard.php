@@ -16,6 +16,5 @@
     <body>
         <h2>Bienvenido </h2>
         Hola, <?php echo $userrow['nombre'],$userrow['apellido']; ?><br>
-
     </body>
 </html>
