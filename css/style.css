@@ -43,6 +43,7 @@ nav {
     padding: 10px;
     text-align: center;
     color: white;
+    height: 60px;
   }
 
     /* Estilo barra superior */
@@ -50,6 +51,7 @@ nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    height: 60px;
     overflow: hidden;
     background-color: #333;
   }
@@ -63,6 +65,7 @@ nav {
     color: white;
     text-align: center;
     padding: 14px 16px;
+    height: 60px;
     text-decoration: none;
   }
   
@@ -89,7 +92,7 @@ nav {
     }
 
 
-    img {
+    /*img {
         border-radius: 8px;
       }
 
@@ -102,7 +105,7 @@ nav {
   }
 
 
-  h1 {
+  h2 {
     font-size: 50px;
     word-break: break-all;
   }
@@ -111,13 +114,14 @@ nav {
   /* Add padding BETWEEN each column (if you want) */
 .row,
 .row > .column {
-  padding: 8px;
+  padding: 10px;
 }
 
 /* Create four equal columns that floats next to each other */
 .column {
   float: left;
-  width: 25%;
+  width: 30%;
+  
 }
 
 /* Clear floats after rows */
@@ -129,10 +133,14 @@ nav {
 
 /* Content */
 .content {
-  background-color: white;
+  background-color: rgba(230, 230, 230, 0.538);
   padding: 10px;
+  height: 450px;
 }
 
+.content img{
+    padding-left: 0%;
+}
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 900px) {
   .column {
@@ -144,4 +152,49 @@ nav {
     .column {
       width: 100%;
     }
+  }
+
+  .btn-group button {
+    background-color: #755db8; /* Green background */
+    border: 1px solid rgb(148, 132, 223); /* Green border */
+    color: white; /* White text */
+    padding: 30px 45%; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+  }
+
+  /* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+  }
+  
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e8e41;
+  }
+
+/* botones de en cursos*/ 
+.btn-cursos button {
+    background-color: #755db8; /* Green background */
+    border: 1px solid rgb(148, 132, 223); /* Green border */
+    color: white; /* White text */
+    padding: 10px 35%; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+  }
+
+  .btn-adwishlist button {
+    background-color: #d7d5db; /* Green background */
+    border: 1px solid rgb(148, 132, 223); /* Green border */
+    color: white; /* White text */
+    padding: 10px 35%; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+    margin-top: 5px;
   }

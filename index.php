@@ -7,6 +7,7 @@
       <title>CSS Template</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="css/style.css">
     <header>
   <h2>Inadeh</h2>
@@ -31,16 +32,22 @@
         <input type="text" name="email" class="textbox" >
         <a>Contraseña:</a>
         <input type="password" name="password" class="textbox">
-        <input id="submit" type="submit" name="Entrar">
-            <footer class="clearfix">
-                <p><span class="info">? </span><a href="nuevo_usuario.php">Registrate</a></p>
-            </footer>
+        <div class="btn-group">
+          <button id="submit" type="submit">Apple</button>
+        </div>
+                <p><a href="nuevo_usuario.php">Registrate</a></p>
+       
       </form>
     </nav>
 
     <article>
-    <h1>Cursos </h1>
+    <h2>Cursos </h2>
     <p>Estos son los cursos ofertados en el Inadeh Guarare.</p>
+<!-- Busqueda -->
+    <form action="/action_page.php">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search"></i>Busqueda</button>
+    </form>
 <!-- Listado de Cursos -->
 
 <!-- Portfolio Gallery Grid -->
@@ -55,9 +62,17 @@
                     {
                     echo "<div class='column'>
                           <div class='content'>
-                            <img src='img/".$row['foto']." 'style='width:80%'>
-                            <h3>".$row['nombre']."</h3>
-                            <p>".$row['codigo']. $row['horas']."</p>
+                            <img src='img/".$row['foto']." 'style='width:100%'>
+                            <h5>".$row['nombre']."</h5>
+                            <p>".$row['codigo']."</p><p>Horas: ".$row['horas']."</p>
+                              <div class='btn-cursos'>
+                                <button>Detalle</button>
+                              </div>
+
+                              <div class='btn-adwishlist'>
+                              <button>Añadir a Lista de Deseos</button>
+                              </div>
+
                           </div>
                           </div> ";
                       }
