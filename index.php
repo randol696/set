@@ -7,7 +7,7 @@
       <title>CSS Template</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
       <link rel="stylesheet" href="css/style.css">
     <header>
   <h2>Inadeh</h2>
@@ -66,7 +66,7 @@
                             <h5>".$row['nombre']."</h5>
                             <p>".$row['codigo']."</p><p>Horas: ".$row['horas']."</p>
                               <div class='btn-cursos'>
-                                <button>Detalle</button>
+                                <a href='verCursosDetalle.php?idCursos=".$row['id']."'><button type='button'>Detalle</button></a>
                               </div>
 
                               <div class='btn-adwishlist'>

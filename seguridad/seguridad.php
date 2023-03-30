@@ -5,7 +5,9 @@
 if($_SESSION["autentica"] != "SIP")
 { 
   //Si no hay sesión activa, lo direccionamos al index.php (inicio de sesión) 
-  header("Location:index.php"); 
+  header("Location:../index.php"); 
+
   exit(); 
+  
 } 
 ?>
