@@ -129,6 +129,49 @@
     .sidebar a {font-size: 18px;}
   }
 
+/* barra derecha */
+
+  .sidebar-left{
+   position: absolute;
+    background: rgb(5, 68, 104);
+    top: 45px;
+    left: 0px;
+    width: 325px;
+    height: auto;
+    padding: 20px 0;
+    transition: all 0.5s ease;
+  }
+  .sidebar-left ul li a{
+    display: block;
+    padding: 13px 30px;
+    border-top: 1px solid #479fe6;
+    border-bottom: 1px solid #479fe6;
+    color: rgb(241, 237, 237);
+    font-size: 16px;
+    position: relative;
+  }
+  .sidebar-left .profile{
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .sidebar-left .profile img{
+    display: block;
+    width: 100px;
+    height: 100px;
+      border-radius: 50%;
+    margin: 0 auto;
+  }
+  
+  .sidebar-left .profile h3{
+    color: #ffffff;
+    margin: 10px 0 5px;
+  }
+  
+  .sidebar-left .profile p{
+    color: rgb(206, 240, 253);
+    font-size: 14px;
+  }
 
 
 .card-list{

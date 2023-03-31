@@ -42,23 +42,23 @@
         <a href="#">Contact</a>
         </div>
 
-        <!-- Boton main bar -->
-        <h2>Bienvenido </h2>
-        Hola, <?php echo $userrow['nombre'],$userrow['apellido']; ?><br>
-        <a href='../seguridad/salir.php'><button type='button'>Salir</button></a>
+
+
         
   
        
 
-        <!-- Portfolio Gallery Grid -->
-        <nav>    
-        <div class="card-list">
-            <div class="wat">
-                <h1>Cursos Inscritos</h1>
+        <!-- barra derecha -->
+        <div class="sidebar-left">
+        <div class="profile">
+                <img src="https://1.bp.blogspot.com/-vhmWFWO2r8U/YLjr2A57toI/AAAAAAAACO4/0GBonlEZPmAiQW4uvkCTm5LvlJVd_-l_wCNcBGAsYHQ/s16000/team-1-2.jpg" alt="profile_picture">
+                <h3><?php echo $userrow['nombre'],$userrow['apellido']; ?></h3>
+                <p>usuario</p>
+                <a href='../seguridad/salir.php'><button type='button'>Salir</button></a>
             </div>
-               
-             <div class="cards">
-        
+
+                <h3>Cursos Inscritos</h3>
+                 <!-- Portfolio Gallery Grid -->
   <?php
         //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
             $sql = "SELECT * FROM tb_misCursos where id_usuario = $userid ";
@@ -66,23 +66,26 @@
             if($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) 
                 {
-                echo "<div class='card'>
-                        <h3>".$row['nombre_curso']."</h3>
-                        <h5>".$row['codigo_curso']."</h5>
+                echo " <ul>
+                        <li>
+                        <h6>".$row['nombre_curso']."</h6>
+                        <p>".$row['codigo_curso']."</p>
                           <div class='btn-cursos'>
                             <a href='borrarCurso.php?idMisCursos=".$row['id']."'><button type='button'>X</button></a>
                           </div>
-                     </div>
+                    
+                     </li>
+                     </ul>
                      ";
                   }
                   } else {
                       echo "<tr><td colspan='5'><center>No estas inscrito a ningun curso!</center></td></tr>";
                   }
               ?>
+        
 </div> 
-</div> 
-</div> 
-</nav>
+
+
  
 
 <!-- Cursos Disponible -->
