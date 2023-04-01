@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="../css/dashboardUsuario.css">
     <head>
         <script type ="text/javascript" src="../js/sideBar.js"></script>
-        <title>Mis Cursos - Sistema de Estimacion de Tendnecias / Inadeh</title>
+        <title>Mis Cursos - Sistema de Estimacion de Tendnecias / Inadeh / Modulo Administrador</title>
     </head>
     <body>
 
@@ -43,6 +43,7 @@
         <!-- Perfil -->
         <div class="sidebar-left">
           <div class="profile">
+          <h1>Modulo Administrador</h1>
             <img src="../img/perfil.png" alt="profile_picture">
             <h3><?php echo $userrow['nombre'],$userrow['apellido']; ?></h3>
             <p>usuario</p>
@@ -67,44 +68,42 @@
           </div> 
 
 
- 
+          <h1>Modulo Administrador</h1>
 
 <!-- Cursos Disponible -->
 <div class="row">
     <h3>Cursos Disponibles</h3>
       <?php
+      $cursos=[];
             //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
-                $sql1 = "SELECT * FROM tb_cursos ";
+                $sql1 = "SELECT * FROM tb_misCursos ";
                 $result1 = $connect->query($sql1);
                 if($result1->num_rows > 0) {
+                    $x=0;
                     while($row = $result1->fetch_assoc()) 
-                    {
-                    echo "<div class='column'>
-                            <div class='content'>
-                            <img src='../img/".$row['foto']." 'style='width:40%'>
-                            <h5>".$row['nombre']."</h5>
-                            <p>".$row['codigo']."</p><p>Horas: ".$row['horas']."</p>
-                              <div class='btn-cursos'>
-                                <a href='../verCursosDetalle.php?idCursos=".$row['id']."'><button type='button'>Detalle</button></a>
-                              </div>
+                    { 
+                      //echo $x;
+                      //$cursos[]=$row['nombre_curso'].$row['codigo_curso'];
+                      $cursos[$x][0]=$row['nombre_curso'];
+                      $cursos[$x][1]=$row['codigo_curso'];
+                      $x++;
+                    }
+                    } else {
+                      echo "<tr><td colspan='5'><center>No se encontraron Datos</center></td></tr>";
+                    }
+              
+                    ksort($cursos);
+                    for ($w=0; $w< count($cursos); $w++){
+                         echo "estadistica: ", ksort($cursos[$w]),"<br>";
+                     }
 
-                              <div class='btn-adwishlist'>
-                                <a href='accionInscripcion.php?idCursos=".$row['id']."'><button type='submit' name='paso1'>Inscribirse</button></a>
-                              </div>
-
-                              <div class='btn-adwishlist'>
-                                <button>Añadir a Lista de Deseos</button>
-                              </div>
-                             
-                              </div> 
-                          </div> ";
-                      }
-                      } else {
-                          echo "<tr><td colspan='5'><center>!</center></td></tr>";
-                      }
+                   // for ($w=0; $w< count($estadistica); $w++){
+                   //   echo "estadistica: ",$estadistica[$w][1],"<br>";
+                  //}
                   ?>
-            </div>
-            </div> 
+  </div>
+
+  </div> 
 </div> 
 </div> 
     </body>
