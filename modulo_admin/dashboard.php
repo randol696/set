@@ -66,17 +66,16 @@
                 echo "<tr><td colspan='5'><center>No estas inscrito a ningun curso!</center></td></tr>";
               } ?>
           </div> 
-
-
           <h1>Modulo Administrador</h1>
 
 <!-- Cursos Disponible -->
 <div class="row">
     <h3>Cursos Disponibles</h3>
+  
       <?php
       $cursos=[];
             //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
-                $sql1 = "SELECT * FROM tb_misCursos ";
+                $sql1 = "SELECT * FROM tb_misCursos ORDER BY nombre_curso DESC ";
                 $result1 = $connect->query($sql1);
                 if($result1->num_rows > 0) {
                     $x=0;
@@ -84,23 +83,31 @@
                     { 
                       //echo $x;
                       //$cursos[]=$row['nombre_curso'].$row['codigo_curso'];
-                      $cursos[$x][0]=$row['nombre_curso'];
-                      $cursos[$x][1]=$row['codigo_curso'];
+                      //$cursos[$x][0]=$row['nombre_curso'];
+                      //$cursos[$x][1]=$row['codigo_curso'];
+                      echo $row['nombre_curso']."<br>";
                       $x++;
                     }
                     } else {
                       echo "<tr><td colspan='5'><center>No se encontraron Datos</center></td></tr>";
                     }
               
-                    ksort($cursos);
+                 
                     for ($w=0; $w< count($cursos); $w++){
-                         echo "estadistica: ", ksort($cursos[$w]),"<br>";
+                         //echo "estadistica: ", $cursos[$w][0],"<br>";
+                         $temp = $cursos[$w][0];
+                        
+
+                          
+                        
                      }
 
                    // for ($w=0; $w< count($estadistica); $w++){
                    //   echo "estadistica: ",$estadistica[$w][1],"<br>";
                   //}
                   ?>
+
+
   </div>
 
   </div> 

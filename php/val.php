@@ -30,3 +30,53 @@
                     
                     echo "x"; 
                   }//fin del for cursos
+
+
+
+
+RECICLANDO CODIGO
+
+
+
+                  for ($w=0; $w< count($cursos);){
+        $temp = $cursos[$w][0];
+   
+        if(count($est)==0){
+            $est[$w][0]=$cursos[$w][0];
+            $est[$w][1]=1;
+            echo "Creando", $est[$w][0],"ADD",$est[$w][1],"<br>";
+
+        }else{
+
+        
+            for($i=0; $i<count($est);){
+                echo"COMPARANDO>", $est[$i][0], "=>", $cursos[$w][0],"<br>";
+                if($est[$i][0] == $cursos[$w][0]){
+                    $temp_val=$est[$i][1];
+                    $est[$i][1]=$temp_val + 1;
+                    echo "Se Encontro y se añade > ",  $est[$i][1], "A =>", $est[$i][0],"<br>";
+                
+                    // si no existe
+
+                } else {
+                    for($h=0; $h<count($est);){
+                        if($est[$i][0] == $cursos[$w][0]){
+                            
+                        }else {
+
+                        }
+                    $h++;
+                    }
+                }
+            $i++;
+              
+                    $val_=$i<count($est);
+                    $var_=$val_1 +1;
+                $est[$var][0]=$cursos[$w][0];
+                $est[$var][1]=1;
+                echo "Creando", $est[$var][0],"ADD",$est[$var][1],"<br>";
+                
+            }
+        }
+    $w++;
+    }
