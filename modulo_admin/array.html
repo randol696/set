@@ -1,0 +1,11 @@
+var str= [20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5];
+
+function findOdd(para) {
+  var count = {};
+  para.forEach(function(para) {
+  count[para] = (count[para] || 0) + 1;
+  });
+  return count;
+}
+
+console.log(findOdd(str));

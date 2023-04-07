@@ -37,27 +37,40 @@ var estadistica = [];
 
   ?>
   <p id="demo"></p>
+  <div id="elemento"></div>
+  <div id="count"></div>
   <div></div>
   
   <script type="text/javascript">
-    const counts ={}
+    /*const counts ={} */
     arr2 = [...estadistica];
-    console.log(estadistica.length);
-    arr2.forEach(function (x) { counts[x]=(counts[x] || 0) +1 });
-    console.log(counts)
-    
-   // for (var i =0; i < .length; i++){
-    //    console.log("x");
-    //}
-   
-    //document.getElementById("demo").value=arr2; 
-    //console.log(counts.lengths)
-    var arr3 ={
-        "marca":"motorola",
-        "modelo":"jdf"
+    //console.log(estadistica.length);
+    //const counts ={} 
+    //arr2.forEach(function (x) { counts[x]=(counts[x] || 0) +1  });
+    //console.log(counts)
+    let est = []
+    //console.log(arr2.length)
+    for (let i=0; i < arr2.length; i++){
+        est.push([arr2[i],0]);
+        //est['curso'] = arr2[i];
+        //est['cantidad'] = 0;
+        //console.log(est.curso[i])
+        //est.push(arr2[i]);
     }
-    document.querySelector("div").innerHTML = JSON.stringify(arr2)
-  
+
+var counts = {};
+
+arr2.forEach(function(element) {
+  counts[element] = (counts[element] || 0) + 1;
+});
+
+for (var element in counts) {
+  console.log(element + ' = ' + counts[element]);
+  document.write(element + '  ' + counts[element]+'<br>');
+  //document.getElementById("elemento").innerHTML +=element;
+  //document.getElementById("count").innerHTML += counts[element];
+} 
+
 </script>
 
 
