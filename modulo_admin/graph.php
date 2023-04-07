@@ -6,6 +6,7 @@
 <script type="text/javascript">
 var estadistica = [];
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 <?php
      include('../conexion/conexion.php');
      $sql1 = "SELECT * FROM tb_misCursos ";
@@ -40,7 +41,8 @@ var estadistica = [];
   <div id="elemento"></div>
   <div id="count"></div>
   <div></div>
-  
+  <canvas id="myChart" style="width:100%;max-width:400px"></canvas>
+
   <script type="text/javascript">
     /*const counts ={} */
     arr2 = [...estadistica];
@@ -57,7 +59,8 @@ var estadistica = [];
         //console.log(est.curso[i])
         //est.push(arr2[i]);
     }
-
+let var1 =[]
+let varr2=[]
 var counts = {};
 
 arr2.forEach(function(element) {
@@ -65,12 +68,46 @@ arr2.forEach(function(element) {
 });
 
 for (var element in counts) {
-  console.log(element + ' = ' + counts[element]);
-  document.write(element + '  ' + counts[element]+'<br>');
+  //console.log(element + ' = ' + counts[element]);
+  //document.write(element + '  ' + counts[element]+'<br>');
+  console.log(element);
+  var1.push(element);
+  varr2.push(counts[element]);
   //document.getElementById("elemento").innerHTML +=element;
   //document.getElementById("count").innerHTML += counts[element];
+  
 } 
+console.log(var1)
+console.log(varr2)
+</script>
 
+<script>
+    
+var xValues = [...var1];
+var yValues = [...varr2];
+console.log(yValues)
+//var xValues = ["Italsy", "France", "Spain", "USA", "Argentina"];
+//var yValues = [55, 49, 44, 24, 15];
+//var barColors = ["red", "green","blue","orange","brown"];
+var barColors = ["red", "green"];
+
+new Chart("myChart", {
+  type: "bar",
+  data: {
+    labels: xValues,
+    datasets: [{
+      backgroundColor: barColors,
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Personas Inscritas a Cursos"
+    }
+  }
+});
 </script>
 
 

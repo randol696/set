@@ -71,7 +71,7 @@
 <!-- Cursos Disponible -->
 <div class="row">
     <h3>Cursos Disponibles</h3>
-  
+  <?php include 'graph.php'; ?>
       <?php
       $cursos=[];
             //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
