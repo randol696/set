@@ -65,8 +65,9 @@ include('../conexion/conexion.php');
 <div id="ultimoValor"></div>
 <p>Maximo historico de usuarios:</p><div id="max"></div>
 <p>Minimo historico de usuarios:</p><div id="min"></div>
+<p>Resultado Estadistico:</p><div id="resultEstadistica"></div>
 <div id="myPlot" style="width:100%;max-width:700px"></div>
-
+<div id="lista"></div>
 
 
 <script type="text/javascript">
@@ -113,6 +114,51 @@ Plotly.newPlot("myPlot", data, layout);
     var min 
     min = Math.min(...estadisticaCantidad);
     document.getElementById("min").innerHTML+= min; 
+
+var text ="";
+    var aum=0, dism=0, igual = 0;
+    for (let x=0; x < estadisticaCurso.length; x++){ 
+     //console.log("estamos en la posicion",[x],"evaluando:",estadisticaCantidad[x])
+            if (parseInt(estadisticaCantidad[x])> parseInt(estadisticaCantidad[x-1])){
+            aum ++;
+            document.write("Durante el periodo Num. : "+[x]+" El numero de participantes Aumento a: "+ estadisticaCantidad[x] + ", en comparación al valor periodo anterior de " + estadisticaCantidad[x-1] + "<br>");
+               // text +="en Aumento"+ estadisticaCantidad[x] + "en comparacion al valor anterior de" + estadisticaCantidad[x-1] + "<br>";
+            }else{
+                if(parseInt(estadisticaCantidad[x]) < parseInt(estadisticaCantidad[x-1])){
+                    dism ++;
+                    //console.log("en disminucion",estadisticaCantidad[x],"en comparacion al valor anterior de",estadisticaCantidad[x-1])
+                    document.write("Durante el periodo Num. : "+[x]+" El numero de participantes disminuyo a: "+ estadisticaCantidad[x] + ", en comparación al valor periodo anterior de " + estadisticaCantidad[x-1] + "<br>");
+                
+                    }else{
+                    if(parseInt(estadisticaCantidad[x])=== parseInt(estadisticaCantidad[x-1])){
+                        igual ++;
+                       // console.log("se mantiene igual",estadisticaCantidad[x],"en comparacion al valor anterior de",estadisticaCantidad[x-1])
+                        document.write("Durante el periodo Num. : "+[x]+" El numero de participantes se mantiene de: "+ estadisticaCantidad[x] + ", en comparación al valor periodo anterior de " + estadisticaCantidad[x-1] + "<br>");
+                        
+
+                    }
+                }
+            }
+            
+            //document.getElementById("lista").innerHTML += text; 
+            
+    }
+
+    if ((aum > dism)&&(aum > igual)){
+        console.log("El curso tiene como tendencia promedio al alza")
+        text="El curso tiene como tendencia promedio al alza";
+    }
+    if ((dism > aum)&&(dism > igual)){
+        console.log("El curso tiene como tendencia promedio a la baja")
+        text="El curso tiene como tendencia promedio a la baja";
+    }
+    if ((igual > dism)&&(igual > aum)){
+        console.log("la tendencia de curso se promedio mantiene ")
+        text="la tendencia de curso se promedio mantiene";
+    }
+    
+    document.getElementById("resultEstadistica").innerHTML += text; 
+    
 
 </script>
     </body>
