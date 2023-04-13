@@ -11,11 +11,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/dashboardUsuario.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <head>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <script type ="text/javascript" src="../js/sideBar.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <title>Mis Cursos - Sistema de Estimacion de Tendnecias / Inadeh / Modulo Administrador</title>
     </head>
     <body>
+    <script type="text/javascript">
+      var estadistica = [];
+    </script>
 
         <!-- Top Barr -->
         <div class="topnav">
@@ -31,89 +39,84 @@
         </div>
          <!-- Barra Derecha Desplegable -->
         <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a >Hola, <?php echo $userrow['nombre'],$userrow['apellido']; ?> </a><br>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+          <a >Hola, <?php echo $userrow['nombre'],$userrow['apellido']; ?> </a><br>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Clients</a>
+          <a href="#">Contact</a>
         </div>
 
         <!-- barra derecha -->
         <!-- Perfil -->
         <div class="sidebar-left">
           <div class="profile">
-          <h1>Modulo Administrador</h1>
+          <h1>Modulo Administrador.</h1>
             <img src="../img/perfil.png" alt="profile_picture">
             <h3><?php echo $userrow['nombre'],$userrow['apellido']; ?></h3>
             <p>usuario</p>
-            <a href='../seguridad/salir.php'><button type='button'>Salir</button></a>
+            <a href='../seguridad/salir.php'><button type='button'><i class="fa-solid fa-right-from-bracket"></i></button></a>
           </div>
           <h3>Cursos Inscritos</h3>
           <!-- Portfolio Gallery Grid -->
-          <?php
-        //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
-            $sql = "SELECT * FROM tb_misCursos where id_usuario = $userid ";
-            $result = $connect->query($sql);
-            if($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                echo "<ul>
-                        <li>
-                          <p>".$row['nombre_curso']."</p> <a href='borrarCurso.php?idMisCursos=".$row['id']."'>Borrar</a>
-                        </li>
-                     </ul>";}
-              } else {
-                echo "<tr><td colspan='5'><center>No estas inscrito a ningun curso!</center></td></tr>";
-              } ?>
-          </div> 
-          <h1>Modulo Administrador</h1>
+        </div>
+         
 
 <!-- Cursos Disponible -->
-<div class="row">
-    <h3>Cursos Disponibles</h3>
-  <?php include 'graph.php'; ?>
+
+ 
       <?php
       $cursos=[];
             //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
-                $sql1 = "SELECT * FROM tb_misCursos ORDER BY nombre_curso DESC ";
-                $result1 = $connect->query($sql1);
-                if($result1->num_rows > 0) {
-                    $x=0;
-                    while($row = $result1->fetch_assoc()) 
-                    { 
-                      //echo $x;
-                      //$cursos[]=$row['nombre_curso'].$row['codigo_curso'];
-                      //$cursos[$x][0]=$row['nombre_curso'];
-                      //$cursos[$x][1]=$row['codigo_curso'];
-                      echo $row['nombre_curso']."<br>";
-                      $x++;
-                    }
-                    } else {
-                      echo "<tr><td colspan='5'><center>No se encontraron Datos</center></td></tr>";
-                    }
-              
+            $sql1 = "SELECT * FROM tb_misCursos ";
+            $result1 = $connect->query($sql1);
+            if($result1->num_rows > 0) {
+                while($row = $result1->fetch_assoc()) 
+                   { 
+                       $val_temp=$row['nombre_curso'];
+                       ?> 
+                       <script type="text/javascript">
+                           estadistica.push(<?php echo json_encode($val_temp);?>);
+                       </script>
+                       <?php 
                  
-                    for ($w=0; $w< count($cursos); $w++){
-                         //echo "estadistica: ", $cursos[$w][0],"<br>";
-                         $temp = $cursos[$w][0];
-                        
-
-                          
-                        
-                     }
-
-                   // for ($w=0; $w< count($estadistica); $w++){
-                   //   echo "estadistica: ",$estadistica[$w][1],"<br>";
-                  //}
+                   }
+               } else {echo "<tr><td colspan='5'><center>No se encontraron Datos</center></td></tr>";
+           }
                   ?>
 
+<div class="plot"><div id="myPlot" style="width:90%;max-width:900px"></div>
 
-  </div>
+</div>
+<script>
+  let var1 =[]
+  let varr2=[]
+  var counts = {};
+  estadistica.forEach(function(element) {
+    counts[element] = (counts[element] || 0) + 1;
+  });
+  for (var element in counts) {
+    var1.push(element);
+    varr2.push(counts[element]);
+  } 
 
-  </div> 
-</div> 
-</div> 
-    </body>
+  const xArray = [...var1];
+  const yArray = [...varr2];
+
+  const data = [{
+    x:xArray,
+    y:yArray,
+    type:"bar",
+    
+    //orientation: "v"
+  }];
+  const layout = {title:"Cantidad de Personas registrada en los cursos"};
+  Plotly.newPlot("myPlot", data, layout);
+</script>
+
+
+
+</body>
 
 
 

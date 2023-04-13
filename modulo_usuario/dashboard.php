@@ -93,7 +93,7 @@
                               </div>
 
                               <div class='btn-adwishlist'>
-                                <button>Añadir a Lista de Deseos</button>
+                              <a href='wishList.php?idCursos=".$row['id']."'><button type='submit' name='paso1'>Añadir a Lista de Deseos</button></a>
                               </div>
                              
                               </div> 

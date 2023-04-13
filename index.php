@@ -33,7 +33,7 @@
         <a>Contraseña:</a>
         <input type="password" name="password" class="textbox">
         <div class="btn-group">
-          <button id="submit" type="submit">Apple</button>
+          <button id="submit" type="submit">Entrar</button>
         </div>
                 <p><a href="nuevo_usuario.php">Registrate</a></p>
        

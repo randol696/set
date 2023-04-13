@@ -89,10 +89,15 @@ console.log(yValues)
 //var xValues = ["Italsy", "France", "Spain", "USA", "Argentina"];
 //var yValues = [55, 49, 44, 24, 15];
 //var barColors = ["red", "green","blue","orange","brown"];
-var barColors = ["red", "green"];
+var barColors ="red"; //same color for all the bars
+//var barColors = ["red", "green"];
 
 new Chart("myChart", {
-  type: "bar",
+  //type: "bar",
+  //type: "pie",
+  //type: "horizontalBar",
+  //type: "line", (For tendency)
+  
   data: {
     labels: xValues,
     datasets: [{
@@ -110,6 +115,27 @@ new Chart("myChart", {
 });
 </script>
 
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div id="myPlot" style="width:100%;max-width:700px"></div>
+
+<script>
+//const xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
+//const yArray = [55, 49, 44, 24, 15];
+const xArray = [...var1];
+const yArray = [...varr2];
+
+const data = [{
+  x:xArray,
+  y:yArray,
+  type:"bar",
+  
+  //orientation: "v"
+}];
+
+const layout = {title:"Cantidad de Personas registrada en los cursos"};
+
+Plotly.newPlot("myPlot", data, layout);
+</script>
 
 </body>
 </html>
