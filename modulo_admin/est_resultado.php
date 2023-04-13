@@ -62,18 +62,21 @@ include('../conexion/conexion.php');
                 }
             }
     ?>
-
-<div id="myPlot" style="width:100%;max-width:700px"></div>
 <div id="ultimoValor"></div>
+<p>Maximo historico de usuarios:</p><div id="max"></div>
+<p>Minimo historico de usuarios:</p><div id="min"></div>
+<div id="myPlot" style="width:100%;max-width:700px"></div>
+
+
 
 <script type="text/javascript">
     var num =[];
     for (let i=0; i < estadisticaCurso.length; i++){ 
         num.push(i);
-        console.log(num)
+        //console.log(num)
     }
-    let ultimoValor = estadisticaCantidad[estadisticaCantidad.length - 16]; // ver el ultimo elemento 
-    document.getElementById("ultimoValor").innerHTML = ultimoValor; 
+ // ver el ultimo elemento 
+    
 const xrango = num.length
 const xArray = [...num];
 const yArray = [...estadisticaCantidad];
@@ -94,7 +97,23 @@ const layout = {
 
 // Display using Plotly
 Plotly.newPlot("myPlot", data, layout);
+
 </script>
 
+
+<script type="text/javascript">
+    var ultimoValor = " ";
+    ultimoValor = estadisticaCantidad[estadisticaCantidad.length - 1];
+    document.getElementById("ultimoValor").innerHTML+= ultimoValor; 
+
+    var max 
+    max = Math.max(...estadisticaCantidad);
+    document.getElementById("max").innerHTML+= max; 
+
+    var min 
+    min = Math.min(...estadisticaCantidad);
+    document.getElementById("min").innerHTML+= min; 
+
+</script>
     </body>
     </html>
