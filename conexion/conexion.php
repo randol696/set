@@ -9,6 +9,6 @@
     if($connect->connect_error) {
         die("connection failed : " . $connect->connect_error);
     } else {
-        //echo "Successfully Connected";
+        //echo "Successfully Connected"; cambios a la base de datos...
     }
 ?>
