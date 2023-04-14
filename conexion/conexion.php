@@ -1,5 +1,5 @@
 <?php 
-    $localhost = "127.0.0.1:8889"; 
+    $localhost = "127.0.0.1"; 
     $username = "root"; 
     $password = "root"; 
     $dbname = "db_set"; 
