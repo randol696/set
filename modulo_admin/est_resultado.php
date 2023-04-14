@@ -6,6 +6,8 @@ include('../conexion/conexion.php');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <head>
     <title>Mis Cursos - Sistema de Estimacion de Tendnecias / Inadeh / Modulo Administrador</title>
     </head>
@@ -16,9 +18,9 @@ include('../conexion/conexion.php');
     </script>
 
 
-<form method="post" action="">
-        <table>
-         <select name="cursoBuscar">
+<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+    
+         <select name="cursoBuscar" id="busqueda">
              <option value=""> Seleccione </option> 
              <?php
                     $sql = "SELECT * FROM tb_cursos" ; 
@@ -30,13 +32,16 @@ include('../conexion/conexion.php');
                     }
              ?>
          </select>
-        </table>
+     
         <button type="submit" name="submit" >Buscar Tendencia</button>
     </form>
 
+<script>
 
+</script>
     <?php
     if(isset($_POST["submit"]))
+
     {
       $cursoBuscar=$_POST["cursoBuscar"];
     
@@ -60,7 +65,7 @@ include('../conexion/conexion.php');
                 } else {
                     echo "<tr><td colspan='5'><center>!</center></td></tr>";
                 }
-            }
+           }
     ?>
 <div id="ultimoValor"></div>
 <p>Maximo historico de usuarios:</p><div id="max"></div>
