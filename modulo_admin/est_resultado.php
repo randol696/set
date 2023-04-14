@@ -5,7 +5,8 @@ include('../conexion/conexion.php');
 <html>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+  
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <head>
