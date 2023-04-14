@@ -1,3 +1,4 @@
-/conexion/conexion.php
+# ignorar toros los archivos que estan dentro de conexion
+/conexion
 #ignorar todo los archivos de mac 
 .DS_store
