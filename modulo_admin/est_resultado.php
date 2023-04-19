@@ -9,6 +9,9 @@ include('../conexion/conexion.php');
   
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <!-- Libreria de la ultima grafica --> 
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
     <head>
     <title>Mis Cursos - Sistema de Estimacion de Tendnecias / Inadeh / Modulo Administrador</title>
     </head>
@@ -74,6 +77,7 @@ include('../conexion/conexion.php');
 <p>Resultado Estadistico:</p><div id="resultEstadistica"></div>
 <div id="myPlot" style="width:100%;max-width:700px"></div>
 <div id="lista"></div>
+
 
 
 <script type="text/javascript">
@@ -167,5 +171,7 @@ var text ="";
     
 
 </script>
+
+
     </body>
     </html>

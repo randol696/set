@@ -19,11 +19,10 @@ include('../conexion/conexion.php');
                            estadistica.push(<?php echo json_encode($val_temp);?>);
                        </script>
                        <?php 
-                 
                    }
-               } else {echo "<tr><td colspan='5'><center>No se encontraron Datos</center></td></tr>";
-           }
-                  ?>
+                  } else {echo "<tr><td colspan='5'><center>No se encontraron Datos</center></td></tr>";
+                  }
+  ?>
 
 <div class="plotc">
   <div id="myPlot"style="width:90%;max-width:900px"></div>
@@ -48,7 +47,6 @@ include('../conexion/conexion.php');
     x:xArray,
     y:yArray,
     type:"bar",
-    
     //orientation: "v"
   }];
   const layout = {title:"Cantidad de Personas registrada en los cursos"};
