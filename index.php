@@ -8,16 +8,21 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+      <!-- Add icon library -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link rel="stylesheet" href="css/style.css">
     <header>
-  <h2>Inadeh</h2>
-</header>
+     <img src="img/logo.png" alt="logo"> 
+    </header>
 <body>
 
 <ul>
   <li><a href="#home">Inicio</a></li>
   <li><a href="#news">Informacion</a></li>
   <li><a href="#contact">Contactanos</a></li>
+  <li style="float:right"><a href="#" class="fa fa-instagram"></a></li>
+  <li style="float:right"><a href="#" class="fa fa-facebook"></a></li>
+  <li style="float:right"><a href="#" class="fa fa-twitter"></a></li>
   <li style="float:right"><a class="active" href="#about">Transparencia</a></li>
 </ul>
 
@@ -35,7 +40,7 @@
         <div class="btn-group">
           <button id="submit" type="submit">Entrar</button>
         </div>
-                <p><a href="nuevo_usuario.php">Registrate</a></p>
+                <p><a href="registroUsuario.php">Registrate</a></p>
        
       </form>
     </nav>
@@ -44,10 +49,12 @@
     <h2>Cursos </h2>
     <p>Estos son los cursos ofertados en el Inadeh Guarare.</p>
 <!-- Busqueda -->
+  <div id="search">
     <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
+      <input type="text" class="search_barr" placeholder="Search.." name="search">
       <button type="submit"><i class="fa fa-search"></i>Busqueda</button>
     </form>
+  </div>
 <!-- Listado de Cursos -->
 
 <!-- Portfolio Gallery Grid -->

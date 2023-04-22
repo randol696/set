@@ -1,34 +1,241 @@
 <?php
-  require('../seguridad/seguridad.php');
+  require('../seguridad/seguridad.php'); 
 	include('../conexion/conexion.php');
 	$userid=$_SESSION['id'];
 	$userq=mysqli_query($connect,"select * from `tb_usuario` where id='$userid'");
 	$userrow=mysqli_fetch_array($userq);
 ?>
-<!-- HTML codigo -->
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../css/dashboardUsuario.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <head>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <script type ="text/javascript" src="../js/sideBar.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <title>Mis Cursos - Sistema de Estimacion de Tendnecias / Inadeh / Modulo Administrador</title>
-    </head>
-    <body>
-    <script type="text/javascript">
-      var estadistica = [];
-    </script>
-        <!-- Top Barr -->
-        <div class="topnav">
-          <a class="openbtn" href="#" onclick="openNav()">Home</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+ * {box-sizing: border-box;
+ margin-left: 0px; 
+}
+ 
+body {font-family: "Lato", sans-serif;}
+
+header {
+    /*background-color: #56aaef; */ 
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+    color: white;
+    
+      background: rgb(34,193,195);
+      background: linear-gradient(135deg, #ffbc96 23%, rgb(15, 188, 236) 100%); 
+    
+  }
+
+/* top bar*/
+.topnav {
+    position: -webkit-sticky;
+    position: sticky;
+    overflow: hidden;
+    background-color: #19276C;
+    margin-top: -9px;
+    margin-left: -9px;
+   
+  }
+  
+  .topnav a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .topnav .search-container {
+    float: right;
+  }
+  
+  .topnav input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+  }
+  
+  .topnav .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .topnav .search-container button:hover {
+    background: #ccc;
+  }
+
+
+/* Avatar */
+.sidebar-left .profile{
+  margin-top: 5px;
+    margin-bottom: 3px;
+    text-align: center;
+  }
+  
+  .sidebar-left .profile img{
+    display: block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    
+  }
+
+
+
+/* Style the tab */
+.tab {
+  top: 1px;
+  float: left;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+  width: 20%;
+  height: 300px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: inherit;
+  color: black;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 80%;
+  border-left: none;
+  height: auto;
+  display: none;
+}
+
+
+.styled-table {
+
+    margin-top:10px;
+    width: 90%; 
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px; 
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.20);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.styled-table th{
+    text-align: left;
+}
+.styled-table th,
+
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #19276c;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #19276c;
+}
+
+.nuevo_contenedor{
+   
+}
+
+
+.button {
+  background-color: #3383ff;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+input[type=text], .form-search {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+}
+
+
+/* Clear floats after the tab */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+
+<body>
+            <!-- Top Barr -->
+    <div class="topnav">
+    <a class="openbtn" href="#" onclick="openNav()">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
             <div class="search-container">
               <form action="/action_page.php">
                 <input type="text" placeholder="Search.." name="search">
@@ -36,55 +243,279 @@
               </form>
             </div>
         </div>
-         <!-- Barra Derecha Desplegable -->
-        <div id="mySidebar" class="sidebar">
-          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-          <a >Hola, <?php echo $userrow['nombre'],$userrow['apellido']; ?> </a><br>
-          <a href="javascript:void(0)" class="closebtn" onclick="registro()">ver cursos</a>
-          <a href="#">Services</a>
-          <a href="#">Clients</a>
-          <a href="#">Contact</a>
-        </div>
-        <!-- barra derecha -->
-        <!-- Perfil -->
-        <div class="sidebar-left">
-          <div class="profile">
-          <h1>Modulo Administrador.</h1>
-            <img src="../img/perfil.png" alt="profile_picture">
-            <h3><?php echo $userrow['nombre'],$userrow['apellido']; ?></h3>
-            <p>usuario</p>
-            <a href='../seguridad/salir.php'><button type='button'><i class="fa-solid fa-right-from-bracket"></i></button></a>
-          </div>
-          <h3>Cursos Inscritos</h3>
-          <a href="javascript:void(0)"  onclick="estadistica()">Numero de Usuarios Inscrito a cursos</a>
-          <a href="javascript:void(0)"  onclick="datos()">Estimacion de Cursos</a>
-          <a href="/modulo_admin/cronJobExecutable.php" >Cron Job</a>
-          <!-- Portfolio Gallery Grid -->
-        </div>
-<!-- Cursos Disponible -->
-<div id="mainDashboard" class="mainDashboard">
-  <script type="text/javascript">
-    function estadistica(){
-      $.ajax({
-      type: 'get',
-      url: 'esta_cantCursos.php',
-      //data: 'charity_id=' + id,
-    success: function(data) {
-       
-        $('#mainDashboard').fadeIn(950000);
-        $('#mainDashboard').html(data);
-        }
-            });
-      }
-      function datos(){
-        window.open('est_resultado.php');
-      //$('#mainDashboard').load('est_resultado.php');
-      }
-  </script>
+  <header>
+  <h2>Sistema de Estimacion de Tendencias</h2>
+<img src="../img/logo.png"  height="50px" alt="logo"><br>
+    </header>
+
+ <!-- side Barr -->
+<div class="tab">
+<div class="sidebar-left">
+    <div class="profile">
+      <img src="../img/perfil.png" alt="profile_picture"><p><?php echo $userrow['nombre'], $userrow['apellido']; ?></p>
+        <a href='../seguridad/salir.php'><button type='button'><i class="Tiny material-icons">clear</i></button></a>
+    </div>
+  </div>
+
+  
+  <button class="tablinks" onmouseover="openCity(event, 'usuarios')">Usuarios</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Cursos</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Listado de Usuarios Inscritos por curso</button>
+  <button class="tablinks" onmouseover="openCity(event, 'cantCursos')">Cantidad Usuarios por cursos</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Crear Certificacion</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Tendencias de Cursos</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Estadistica</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Configurar Acciones</button>
 </div>
-<?php 
-  //include "esta_cantCursos.php"; 
-  //include "est_resultado.php"; 
+<!-- -----------------------------------------Modulo Usuarios  ------------------------------------------->
+<div id="usuarios" class="tabcontent">
+  <h3>Usuarios Registrados</h3>
+  <p>Selecione alguna de las opciones Disponibles para los usuarios.</p>
+  <a href="../registroUsuario.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">person_add</i> Crear Usuario</a>
+  <a href="#" class="button"><i class="Tiny material-icons">library_books</i> Reporte de Usuarios</a>
+  <a href="#" class="button"><i class="Tiny material-icons">account_circle</i> Usuarios Administrativos</a>
+  <a href="#" class="button"><i class="Tiny material-icons">chrome_reader_mode</i> Ver Certificados</a>
+
+  <form class="form-horizontal" action="#" method="post">
+    <div class="row">
+        <div class="form-group">
+            
+            <label class="control-label col-sm-4" for="email"><b>Busqueda por Usuarios</b>:</label>
+              <input type="text" class="form-search" name="search" placeholder="Introduzca nombre o apellido a buscar">
+              <button type="submit" name="save" class="button"><i class="Tiny material-icons">csearch</i> Buscar</button>
+        </div>
+        <div class="form-group">
+            <span class="error" style="color:red;">* <?php echo $searchErr;?></span>
+        </div>
+        </div>
+        </form>
+  
+ <!-- side Barr -->
+  <table class="styled-table">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Opciones</th>
+            </tr>
+           
+
+<?php if(!empty($_POST['search']))
+{
+    $search = $_POST['search'];
+            //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
+                $sql1 = "SELECT * FROM tb_usuario where nombre like '%$search%' or apellido like '%$search%'";
+                $result1 = $connect->query($sql1);
+                if($result1->num_rows > 0) {
+                    while($row = $result1->fetch_assoc()) 
+                    { echo "
+                        <tr>
+                            <td>".$row['nombre']."</td>
+                            <td>".$row['apellido']."</td>
+                            <td>".$row['correo']."</td>
+                            <td>    
+                            <a href='editar.php?id_calendario=".$row['id']."'><i class='Tiny material-icons'>csearch</i>Editar</a>
+                            <a href='remove.php?id=".$row['id']."'><button type='button'>Eliminar</button></a>
+                                
+                            </td>
+                        </tr>"  ;
+                      }
+                      } else {
+                        $searchErr = "Ningun resultado";
+                      }
+    }else {   
+
+            $sql1 = "SELECT * FROM tb_usuario ";
+            $result1 = $connect->query($sql1);
+            if($result1->num_rows > 0) {
+                while($row = $result1->fetch_assoc()) 
+                {
+                echo "
+                    <tr>
+                        <td>".$row['nombre']."</td>
+                        <td>".$row['apellido']."</td>
+                        <td>".$row['correo']."</td>
+                        <td>    
+                        <a href='editar.php?id_calendario=".$row['id']."'><i class='Tiny material-icons'>edit</i>Editar</a>
+                        <a href='editar.php?id_calendario=".$row['id']."'><i class='Tiny material-icons'>assignment_ind</i>Asignar Roll</a>
+                        <a href='remove.php?id=".$row['id_calendario']."'><i class='Tiny material-icons'>delete</i>Eliminar</a>
+                            
+                        </td>
+                    </tr>"  ;
+                  }
+
+
+                  }else {
+                    $searchErr = "Ningun resultado";
+                  }
+            
+               
+        }
+    ?>
+    </table>
+</div>
+
+<!-- -----------------------------------------Modulo Cursos  ------------------------------------------->
+<div id="Cursos" class="tabcontent">
+  <h3>Cursos</h3>
+  <p>Selecione alguna operacion para realizar con cursos.</p> 
+
+    
+  <table class="styled-table">
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Horas</th>
+                <th>Activo</th>
+                <th>Operaciones</th>
+            </tr>
+            <?php
+            //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
+                $sqlc = "SELECT * FROM tb_cursos ";
+                $resultc = $connect->query($sqlc);
+                if($resultc->num_rows > 0) {
+                    while($row = $resultc->fetch_assoc()) 
+                    {
+                    echo "
+                        <tr>
+                            <td>".$row['codigo']."</td>
+                            <td>".$row['nombre']."</td>
+                            <td>".$row['horas']."</td>
+                            <td>".$row['activo']."</td>
+                            
+                            <td>    
+                            <a href='edit.php?id_calendario=".$row['id']."'><button type='button'>Editar</button></a>
+                            <a href='remove.php?id=".$row['id_calendario']."'><button type='button'>Cancelar</button></a>
+                                
+                            </td>
+                        </tr>"  ;
+                      }
+                      } else {
+                          echo "<tr><td colspan='5'><center>!</center></td></tr>";
+                      }
+    ?>
+    </table>
+</div>
+
+<!-- -----------------------------------------Modulo Cursos por usuarios  ------------------------------------------->
+
+<div id="cantCursos" class="tabcontent">
+  <h3>Cantidad de Usuarios por Curso</h3>
+  <p>Cantidad de usuarios por curso.</p>
+  <script type="text/javascript">
+      var estadistica = [];
+    </script>
+ <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <?php
+      $cursos=[];
+            //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
+            $sql1 = "SELECT * FROM tb_misCursos ";
+            $result1 = $connect->query($sql1);
+            if($result1->num_rows > 0) {
+                while($row = $result1->fetch_assoc()) 
+                   { 
+                       $val_temp=$row['nombre_curso'];
+                       ?> 
+                       <script type="text/javascript">
+                           estadistica.push(<?php echo json_encode($val_temp);?>);
+                       </script>
+                       <?php 
+                   }
+                  } else {echo "<tr><td colspan='5'><center>No se encontraron Datos</center></td></tr>";
+                  }
   ?>
+
+<div class="plotc">
+    <div id="myChart" style="width: 900px; "></div>
+    <section></section>
+<div id="myPlot"style="width:50%;max-width:900px">
+  
+</div>
+
+<script>
+  let var1 =[]
+  let varr2=[]
+  var counts = {};
+  estadistica.forEach(function(element) {
+    counts[element] = (counts[element] || 0) + 1;
+  });
+  for (var element in counts) {
+    var1.push(element);
+    varr2.push(counts[element]);
+  } 
+
+
+  const xArray = [...var1];
+  const yArray = [...varr2];
+
+  const data = [{
+    x:xArray,
+    y:yArray,
+    type:"bar",
+    //orientation: "v"
+  }];
+  const layout = {title:"Cantidad de Personas registrada en los cursos"};
+  Plotly.newPlot("myPlot", data, layout);
+</script>
+
+
+
+
+<script>
+ 
+
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        const wArray = [];
+        wArray.push(["Curso", "Num de Usuarios Inscritos"]);
+        for (let i = 0; i < xArray.length; i++) {
+          wArray.push([xArray[i], yArray[i]]);
+        }
+        console.log(wArray);
+        const data = google.visualization.arrayToDataTable(wArray);
+
+
+        const options = {
+          title: "Porcentaje de Numero de Usuarios inscritos a Cursos"
+        };
+
+        const chart = new google.visualization.PieChart(document.getElementById("myChart"));
+        chart.draw(data, options);
+      }
+    </script>
+
+</div>
+
+<div id="cantCursos" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+<div id="cantCursos" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+<div class="clearfix"></div>
+
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+   
 </body>
-</html>
+</html> 
