@@ -260,20 +260,20 @@ input[type=text], .form-search {
   
   <button class="tablinks" onmouseover="openCity(event, 'usuarios')">Usuarios</button>
   <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Cursos</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Listado de Usuarios Inscritos por curso</button>
-  <button class="tablinks" onmouseover="openCity(event, 'cantCursos')">Cantidad Usuarios por cursos</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Crear Certificacion</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Tendencias de Cursos</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Estadistica</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Configurar Acciones</button>
+  <button class="tablinks" onmouseover="openCity(event, '3listaCursosUsuarios')">Listado de Usuarios Inscritos por curso</button>
+  <button class="tablinks" onmouseover="openCity(event, '4cantUsuariosxCursos')">Cantidad Usuarios por cursos</button>
+  <button class="tablinks" onmouseover="openCity(event, '5CrearCertificado')">Crear Certificacion</button>
+  <button class="tablinks" onmouseover="openCity(event, '6tendenciaCursos')">Tendencias de Cursos</button>
+  <button class="tablinks" onmouseover="openCity(event, 'modEstadistica')">Estadistica</button>
+  <button class="tablinks" onmouseover="openCity(event, '8configuracion')">Configurar Acciones</button>
 </div>
-<!-- -----------------------------------------Modulo Usuarios  ------------------------------------------->
+<!-- 1-----------------------------------------Modulo Usuarios  ------------------------------------------->
 <div id="usuarios" class="tabcontent">
   <h3>Usuarios Registrados</h3>
   <p>Selecione alguna de las opciones Disponibles para los usuarios.</p>
   <a href="../registroUsuario.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">person_add</i> Crear Usuario</a>
-  <a href="#" class="button"><i class="Tiny material-icons">library_books</i> Reporte de Usuarios</a>
-  <a href="#" class="button"><i class="Tiny material-icons">account_circle</i> Usuarios Administrativos</a>
+  <a href="reporteUsuarios.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">library_books</i> Reporte de Usuarios</a>
+  <a href="reporteUsuariosAdmin.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">account_circle</i> Usuarios Administrativos</a>
   <a href="#" class="button"><i class="Tiny material-icons">chrome_reader_mode</i> Ver Certificados</a>
 
   <form class="form-horizontal" action="#" method="post">
@@ -336,7 +336,8 @@ input[type=text], .form-search {
                         <td>".$row['apellido']."</td>
                         <td>".$row['correo']."</td>
                         <td>    
-                        <a href='editar.php?id_calendario=".$row['id']."'><i class='Tiny material-icons'>edit</i>Editar</a>
+                        "?> <a href='editarUsuario.php?id_usuario=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar</a>
+                        <?php echo"
                         <a href='editar.php?id_calendario=".$row['id']."'><i class='Tiny material-icons'>assignment_ind</i>Asignar Roll</a>
                         <a href='remove.php?id=".$row['id_calendario']."'><i class='Tiny material-icons'>delete</i>Eliminar</a>
                             
@@ -355,7 +356,7 @@ input[type=text], .form-search {
     </table>
 </div>
 
-<!-- -----------------------------------------Modulo Cursos  ------------------------------------------->
+<!-- 2-----------------------------------------Modulo Cursos  ------------------------------------------->
 <div id="Cursos" class="tabcontent">
   <h3>Cursos</h3>
   <p>Selecione alguna operacion para realizar con cursos.</p> 
@@ -397,9 +398,9 @@ input[type=text], .form-search {
     </table>
 </div>
 
-<!-- -----------------------------------------Modulo Cursos por usuarios  ------------------------------------------->
+<!-- 3-----------------------------------------Modulo Cursos por usuarios  ------------------------------------------->
 
-<div id="cantCursos" class="tabcontent">
+<div id="3listaCursosUsuarios" class="tabcontent">
   <h3>Cantidad de Usuarios por Curso</h3>
   <p>Cantidad de usuarios por curso.</p>
   <script type="text/javascript">
@@ -429,9 +430,7 @@ input[type=text], .form-search {
 <div class="plotc">
     <div id="myChart" style="width: 900px; "></div>
     <section></section>
-<div id="myPlot"style="width:50%;max-width:900px">
-  
-</div>
+<div id="myPlot"style="width:50%;max-width:900px"></div>
 
 <script>
   let var1 =[]
@@ -486,17 +485,63 @@ input[type=text], .form-search {
         chart.draw(data, options);
       }
     </script>
-
 </div>
-
-<div id="cantCursos" class="tabcontent">
-  <h3>Tokyo</h3>
+</div>
+<!--4 -----------------------------------------Estadistica  ------------------------------------------->
+<div id="4cantUsuariosxCursos" class="tabcontent">
+  <h3>Cantidad de Usuarios por cursos</h3>
   <p>Tokyo is the capital of Japan.</p>
 </div>
-
-<div id="cantCursos" class="tabcontent">
-  <h3>Tokyo</h3>
+<!--5 -----------------------------------------Certificado  ------------------------------------------->
+<div id="5CrearCertificado" class="tabcontent">
+  <h3>Certificacion</h3>
+  <p>Haga click en el participante para crear la certificacion</p>
+  <table class="styled-table">
+            <tr>
+                <th>Nomre</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Operaciones</th>
+            </tr>
+            <?php
+            //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
+                $sqlc = "SELECT * FROM tb_usuario ";
+                $resultc = $connect->query($sqlc);
+                if($resultc->num_rows > 0) {
+                    while($row = $resultc->fetch_assoc()) 
+                    {
+                    echo "
+                        <tr>
+                        <td>".$row['nombre']."</td>
+                        <td>".$row['apellido']."</td>
+                        <td>".$row['correo']."</td>
+                            <td> 
+                            "?> <a href='certificado.php?id_usuario=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Generar Certificado</a>
+                            <?php  ;
+                      }
+                      } else {
+                          echo "<tr><td colspan='5'><center>!</center></td></tr>";
+                      }
+    ?>
+    </table>
+</div>
+<!--6 -----------------------------------------Estadistica  ------------------------------------------->
+<div id="6tendenciaCursos" class="tabcontent">
+  <h3>Tendencia de Cursos</h3>
   <p>Tokyo is the capital of Japan.</p>
+</div>
+<!--7-----------------------------------------Estadistica  ------------------------------------------->
+<div id="modEstadistica" class="tabcontent">
+  <h3>Estadistica Cursos</h3>
+  <p>Estadistica de todos los cursos a los que los usuarios se han inscrito a lo largo del tiempo.</p>
+  <a href="est_resultado.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">assessment</i> Ver Estadistica</a>
+  <!-- <iframe name="FRAMENAME" src="est_resultado.php" width="1000" height="1000"style="z-index:10000" height="40" frameborder="0" scrolling="no" allowautotransparency=true></iframe> -->
+</div>
+<!--8-----------------------------------------Configuracion  ------------------------------------------->
+<div id="8configuracion" class="tabcontent">
+  <h3>Configuracion</h3>
+  <p>Tokyo is the capital of Japan.</p>
+  <a href="cronJobExecutable.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">assessment</i> Ejecutar Recoleccion de Datos</a>
 </div>
 
 <div class="clearfix"></div>
