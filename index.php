@@ -40,8 +40,7 @@
         <div class="btn-group">
           <button id="submit" type="submit">Entrar</button>
         </div>
-                <p><a href="registroUsuario.php">Registrate</a></p>
-       
+        <p><a href="registroUsuario.php">Registrate</a></p>
       </form>
     </nav>
 

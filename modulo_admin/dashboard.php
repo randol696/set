@@ -361,7 +361,9 @@ input[type=text], .form-search {
   <h3>Cursos</h3>
   <p>Selecione alguna operacion para realizar con cursos.</p> 
 
-    
+  <a href="registroCursos.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">person_add</i> Crear Un Nuevo Curso</a>
+  <a href="reporteCursos.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">library_books</i> Reporte Completo de Cursos</a>
+   
   <table class="styled-table">
             <tr>
                 <th>Codigo</th>
@@ -383,9 +385,11 @@ input[type=text], .form-search {
                             <td>".$row['nombre']."</td>
                             <td>".$row['horas']."</td>
                             <td>".$row['activo']."</td>
-                            
                             <td>    
-                            <a href='edit.php?id_calendario=".$row['id']."'><button type='button'>Editar</button></a>
+                            "?> 
+                            <a href='modCursos.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar</a>
+                            <a href='modCursosImagen.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Imagen</a>
+                            <?php echo"
                             <a href='remove.php?id=".$row['id_calendario']."'><button type='button'>Cancelar</button></a>
                                 
                             </td>
@@ -458,12 +462,8 @@ input[type=text], .form-search {
   Plotly.newPlot("myPlot", data, layout);
 </script>
 
-
-
-
 <script>
  
-
       google.charts.load("current", { packages: ["corechart"] });
       google.charts.setOnLoadCallback(drawChart);
 
@@ -491,6 +491,30 @@ input[type=text], .form-search {
 <div id="4cantUsuariosxCursos" class="tabcontent">
   <h3>Cantidad de Usuarios por cursos</h3>
   <p>Tokyo is the capital of Japan.</p>
+      <?php 
+       $sqlc = "SELECT * FROM tb_misCursos ";
+       $resultc = $connect->query($sqlc);
+       if($resultc->num_rows > 0) {
+           while($row = $resultc->fetch_assoc()) 
+           {
+           echo "
+               <tr>
+               <td>".$row['nombre_usuario']."</td>
+               <td>".$row['apellido_usuario']."</td>
+               <td>".$row['id_curso']."</td>
+               <td>".$row['nombre_curso']."</td>
+               <td>".$row['codigo_curso']."</td>
+                   <td> 
+                   "?> <a href='certificado.php?id_usuario=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Generar Certificado</a>
+                   <?php  ;
+             }
+             } else {
+                 echo "<tr><td colspan='5'><center>!</center></td></tr>";
+             }
+    ?>
+
+
+
 </div>
 <!--5 -----------------------------------------Certificado  ------------------------------------------->
 <div id="5CrearCertificado" class="tabcontent">
@@ -540,8 +564,8 @@ input[type=text], .form-search {
 <!--8-----------------------------------------Configuracion  ------------------------------------------->
 <div id="8configuracion" class="tabcontent">
   <h3>Configuracion</h3>
-  <p>Tokyo is the capital of Japan.</p>
-  <a href="cronJobExecutable.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">assessment</i> Ejecutar Recoleccion de Datos</a>
+  <p>Selecione una opcion del Panel.</p>
+  <a href="cronJobExecutable.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">assessment</i>Ejecutar Cron Job</a>
 </div>
 
 <div class="clearfix"></div>

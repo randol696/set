@@ -31,12 +31,8 @@
         $_SESSION["autentica"] = "SIP";
         header('location:../modulo_usuario/dashboard.php'); //al confirmar se redirecciona la pagina accesada
         break;
-     case 3:
-        session_start(); 
-        $_SESSION["autentica"] = "SIP";
-        header('location:../usuario_administrador/admin_dashboard.php'); //al confirmar se redirecciona la pagina accesada
-
-        break;                
+    
+      
 }
     
 	}
