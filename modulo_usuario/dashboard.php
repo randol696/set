@@ -5,123 +5,231 @@
 	$userq=mysqli_query($connect,"select * from `tb_usuario` where id='$userid'");
 	$userrow=mysqli_fetch_array($userq);
 ?>
-<!-- HTML codigo -->
-<!doctype html>
-<html>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../css/dashboardUsuario.css">
-    <head>
-        <script type ="text/javascript" src="../js/sideBar.js"></script>
-        <title>Mis Cursos - Sistema de Estimacion de Tendnecias / Inadeh</title>
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/usuariosDashboard.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+     
+      <img src="../img/logo.png" width="200" alt="">
+      <span class="logo_name"> </span>
+    </div>
+      <ul class="nav-links">
+        <li>
+          <a href="#" class="active">
+            <i class='bx bx-grid-alt' ></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+        </li>
+  
+        <li>
+          <a href="#">
+            <i class='bx bx-book-alt' ></i>
+            <span class="links_name">Mis Certificados</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-user' ></i>
+            <span class="links_name">Equipo</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-message' ></i>
+            <span class="links_name">Mensajes</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-heart' ></i>
+            <span class="links_name">Favoritos</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-cog' ></i>
+            <span class="links_name">Configuraciones</span>
+          </a>
+        </li>
+        <li class="log_out" >
+          <a href='../seguridad/salir.php'>
+            <i class='bx bx-log-out' ></i>
+            <span class="links_name" >Salir</span>
+          </a>
+        </li>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class='bx bx-menu sidebarBtn'></i>
+        <span class="dashboard">Dashboard</span>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="buscar...">
+        <i class='bx bx-search' ></i>
+      </div>
+      <div class="profile-details">
+        <!--<img src="images/profile.jpg" alt="">-->
+        <img src="../img/perfil.png" alt="profile_picture">
+      
+        <span class="admin_name"><?php echo $userrow['nombre'], " ",$userrow['apellido']; ?></span>
+        <i class='bx bx-chevron-down' ></i>
+      </div>
+    </nav>
 
-        <!-- Top Barr -->
-        <div class="topnav">
-          <a class="openbtn" href="#" onclick="openNav()">Home</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-            <div class="search-container">
-              <form action="/action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-              </form>
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Cursos Inscritos</div>
+            <?php $sql = "SELECT COUNT(id_usuario) From tb_misCursos where id_usuario = $userid ";
+            $result = $connect->query($sql);
+            if($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                $temp_cantidad=$row['COUNT(id_usuario)'];
+              }
+              } else {
+              } ?>
+            <div class="number"><?php echo $temp_cantidad;?></div>
+            <div class="indicator">
+              
+              <span class="text"> </span>
             </div>
-        </div>
-         <!-- Barra Derecha Desplegable -->
-        <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-        <a >Hola, <?php echo $userrow['nombre'],$userrow['apellido']; ?> </a><br>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Clients</a>
-        <a href="#">Contact</a>
-        </div>
-
-        <!-- barra derecha -->
-        <!-- Perfil -->
-        <div class="sidebar-left">
-          <div class="profile">
-            <img src="../img/perfil.png" alt="profile_picture">
-            <h3><?php echo $userrow['nombre'],$userrow['apellido']; ?></h3>
-            <p>usuario</p>
-            <a href='../seguridad/salir.php'><button type='button'>Salir</button></a>
           </div>
-          <h3>Cursos Inscritos</h3>
-          <!-- Portfolio Gallery Grid -->
+          
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Cursos Ofertados</div>
+            <?php $sql = "SELECT COUNT(id) From tb_cursos  ";
+            $result = $connect->query($sql);
+            if($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                $temp_cantidad=$row['COUNT(id)'];
+              }
+              } else {
+              } ?>
+            <div class="number"><?php echo $temp_cantidad;?></div>
+            <div class="indicator">
+             
+             
+            </div>
+          </div>
+        
+        </div>
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic">Certificaciones</div>
+            <div class="number">0</div>
+            <div class="indicator">
+              
+            </div>
+          </div>
+      
+        </div>
+        
+        <div class="box">
+          <div class="right-side">
+            <div class="box-topic"> </div>
+            <div class="number"></div>
+            <div class="indicator">
+              <i class='bx bx-down-arrow-alt down'></i>
+              <span class="text"></span>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+
+      <div class="sales-boxes">
+        <div class="recent-sales box">
+          <div class="title">Cursos Inscritos</div>
+          <div class="sales-details">
+          <ul class="details">
+            <li class="topic">Cursos</li>
           <?php
         //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
             $sql = "SELECT * FROM tb_misCursos where id_usuario = $userid ";
             $result = $connect->query($sql);
             if($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
-                echo "<ul>
-                        <li>
-                          <p>".$row['nombre_curso']."</p> 
-                          <a href='verCursos.php?idCursos=".$row['id']."'>Ver curso</a>
-                          <a href='borrarCurso.php?idMisCursos=".$row['id']."'>Borrar</a>
-                        </li>
-                     </ul>";}
+                echo "
+                      <li><a>".$row['nombre_curso']."</a> <a href='verCursos.php?idCursos=".$row['id']."'><i class='material-icons'>local_library</i></a> <a href='borrarCurso.php?idMisCursos=".$row['id']."'><i class='material-icons'>clear</i></a></li>
+                    
+                     ";}
               } else {
-                echo "<tr><td colspan='5'><center>No estas inscrito a ningun curso!</center></td></tr>";
+                echo "<li><a>No estas inscrito a ningun curso</a></li>";
               } ?>
-          </div> 
+              </ul>
+            
+    
+      
+          </div>
+          <div class="button">
+            <a href="#">See All</a>
+          </div>
+        </div>
+        <div class="top-sales box">
+          <div class="title">Cursos Ofertados</div>
+          <ul class="top-sales-details">
+            <li>
 
-
- 
-
-<!-- Cursos Disponible -->
-<div class="row">
-    <h3>Cursos Disponibles</h3>
-      <?php
+            <?php
             //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
                 $sql1 = "SELECT * FROM tb_cursos ";
                 $result1 = $connect->query($sql1);
                 if($result1->num_rows > 0) {
                     while($row = $result1->fetch_assoc()) 
                     {
-                    echo "<div class='column'>
-                            <div class='content'>
-                            <img src='../img/".$row['foto']." 'style='width:40%'>
-                            <h5>".$row['nombre']."</h5>
-                            <p>".$row['codigo']."</p><p>Horas: ".$row['horas']."</p>
-                              <div class='btn-cursos'>
-                                <a href='../verCursosDetalle.php?idCursos=".$row['id']."'><button type='button'>Detalle</button></a>
-                              </div>
+                    echo "<a href='#'>
+                    <img src='../img/".$row['foto']." 'style='width:40%'>
+                    
+                    <span class='product'>".$row['nombre']."</span> 
+                    
+                  </a>
+                  <span class='product'>
+                  <a href='../verCursosDetalle.php?idCursos=".$row['id']."'><i class='material-icons'>open_in_browser</i></a>
+                  <a href='accionInscripcion.php?idCursos=".$row['id']."'><i class='material-icons'>school</i></a>
+                  <a href='wishList.php?idCursos=".$row['id']."'><i class='material-icons'>favorite</i></a>
+                  </span> 
+                  </li>
+                <li>
+                ";
+              }
+              } else {
+                  echo "<tr><td colspan='5'><center>!</center></td></tr>";
+              }
+          ?>
+ 
+   
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                              <div class='btn-adwishlist'>
-                                <a href='accionInscripcion.php?idCursos=".$row['id']."'><button type='submit' name='paso1'>Inscribirse</button></a>
-                              </div>
+  <script>
+   let sidebar = document.querySelector(".sidebar");
+let sidebarBtn = document.querySelector(".sidebarBtn");
+sidebarBtn.onclick = function() {
+  sidebar.classList.toggle("active");
+  if(sidebar.classList.contains("active")){
+  sidebarBtn.classList.replace("bx-menu" ,"bx-menu-alt-right");
+}else
+  sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+}
+ </script>
 
-                              <div class='btn-adwishlist'>
-                              <a href='wishList.php?idCursos=".$row['id']."'><button type='submit' name='paso1'>Añadir a Lista de Deseos</button></a>
-                              </div>
-                             
-                              </div> 
-                          </div> ";
-                      }
-                      } else {
-                          echo "<tr><td colspan='5'><center>!</center></td></tr>";
-                      }
-                  ?>
-            </div>
-            </div> 
-</div> 
-</div> 
-    </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
 </html>
+
