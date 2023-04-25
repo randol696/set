@@ -58,7 +58,9 @@
                 while($row = $result->fetch_assoc()) {
                 echo "<ul>
                         <li>
-                          <p>".$row['nombre_curso']."</p> <a href='borrarCurso.php?idMisCursos=".$row['id']."'>Borrar</a>
+                          <p>".$row['nombre_curso']."</p> 
+                          <a href='verCursos.php?idCursos=".$row['id']."'>Ver curso</a>
+                          <a href='borrarCurso.php?idMisCursos=".$row['id']."'>Borrar</a>
                         </li>
                      </ul>";}
               } else {
