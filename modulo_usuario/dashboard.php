@@ -37,13 +37,13 @@
           </a>
         </li>
         <li>
-          <a href="#">
+        <a href="contactos.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;">
             <i class='bx bx-user' ></i>
             <span class="links_name">Equipo</span>
           </a>
         </li>
         <li>
-          <a href="#">
+        <a href="bandejaMensaje.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;">
             <i class='bx bx-message' ></i>
             <span class="links_name">Mensajes</span>
           </a>
