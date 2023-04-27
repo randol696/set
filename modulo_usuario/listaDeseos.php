@@ -31,21 +31,20 @@
                 <div class="box">
                 <table >
                 <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Correo</th>
-                    <th>Enviar Mensaje</th>
+                    <th>Nombre del curso</th>
+                    <th>Codigo</th>
+                    <th>Operaciones </th>
                 </tr>
-                <?php $sql = "SELECT * From tb_usuario ";
+                <?php 
+                $sql = "SELECT * From tb_wishlist where id_usuario = $userid";
                     $result = $connect->query($sql);
                     if($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
                             echo "
                             <tr>
-                                <td><a>".$row['nombre']."</a> </td>
-                                <td><a>".$row['apellido']."</a> </td>
-                                <td><a>".$row['correo']."</a> </td>
-                                <td><a href='mensaje.php?para=".$row['id']."'><i class='material-icons'></i>Enviar</a></td>
+                                <td><a>".$row['nombre_curso']."</a> </td>
+                                <td><a>".$row['Codigo_curso']."</a> </td>
+                                <td><a href='eliminarWishList.php?para=".$row['id']."'><i class='material-icons'></i>Eliminar</a></td>
                             </tr>";}
                     } else {
                     } ?>

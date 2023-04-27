@@ -40,6 +40,7 @@
         <a href="contactos.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;">
             <i class='bx bx-user' ></i>
             <span class="links_name">Equipo</span>
+            
           </a>
         </li>
         <li>
@@ -49,7 +50,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+        <a href="listaDeseos.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;">
             <i class='bx bx-heart' ></i>
             <span class="links_name">Favoritos</span>
           </a>
@@ -102,7 +103,7 @@
               } ?>
             <div class="number"><?php echo $temp_cantidad;?></div>
             <div class="indicator">
-              
+            <i class='material-icons'>school</i>
               <span class="text"> </span>
             </div>
           </div>
@@ -121,7 +122,7 @@
               } ?>
             <div class="number"><?php echo $temp_cantidad;?></div>
             <div class="indicator">
-             
+            <i class='material-icons'>school</i>
              
             </div>
           </div>
@@ -132,7 +133,7 @@
             <div class="box-topic">Certificaciones</div>
             <div class="number">0</div>
             <div class="indicator">
-              
+            <i class='material-icons'>school</i>
             </div>
           </div>
       
@@ -140,10 +141,18 @@
         
         <div class="box">
           <div class="right-side">
-            <div class="box-topic"> </div>
-            <div class="number"></div>
+            <div class="box-topic">Lista de Deseos</div>
+            <?php $sql = "SELECT COUNT(id) From tb_wishlist where id_usuario = $userid ";
+            $result = $connect->query($sql);
+            if($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                $temp_cantidad=$row['COUNT(id)'];
+              }
+              } else {
+              } ?>
+            <div class="number"><?php echo $temp_cantidad;?></div>
             <div class="indicator">
-              <i class='bx bx-down-arrow-alt down'></i>
+            <i class='material-icons'>favorite</i>
               <span class="text"></span>
             </div>
           </div>

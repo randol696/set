@@ -15,9 +15,10 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-<table >
+<table class="styled-table">
                 <tr>
-                    <th></th>
+                    <th><input type='checkbox' id='one' /></th>
+                    <th>Fecha</th>
                     <th>De</th>
                     <th>Para</th>
                     <th></th>
@@ -32,16 +33,19 @@
 
 
 
-    $sql = "SELECT * FROM tb_mensaje where para_usuario_id = $userid ";
+    $sql = "SELECT * FROM tb_mensaje where para_usuario_id = $userid ORDER BY timestamp DESC";
     $result = $connect->query($sql);
     if($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
         echo "
         <tr>
             <td><input type='checkbox' id='one' /></label></td>
+            <td><a>".$row['timestamp']."</a> </td>
             <td><a>De: ".$row['denombre']."</a> </td>
             <td><a>Para: ".$row['paranombre']."</a> </td>
-            <td><a href='Vermensaje.php?id=".$row['id']."'><i class='material-icons'>email</i>Ver</a></td>
+            <td><a href='VerMensaje.php?id=".$row['id']."'><i class='material-icons'>email</i>Ver</a>
+            <a href='eliminarMensaje.php?id=".$row['id']."'><i class='material-icons'>clear</i>Eliminar</a>
+            </td>
         </tr>
              ";}
       } else {

@@ -219,7 +219,10 @@ input[type=text], .form-search {
   box-sizing: border-box;
 
 }
-
+.googlegraph{
+  width: 100%;
+  height: 100%;
+}
 
 /* Clear floats after the tab */
 .clearfix::after {
@@ -258,14 +261,14 @@ input[type=text], .form-search {
   </div>
 
   
-  <button class="tablinks" onmouseover="openCity(event, 'usuarios')">Usuarios</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Cursos')">Cursos</button>
-  <button class="tablinks" onmouseover="openCity(event, '3listaCursosUsuarios')">Listado de Usuarios Inscritos por curso</button>
-  <button class="tablinks" onmouseover="openCity(event, '4cantUsuariosxCursos')">Cantidad Usuarios por cursos</button>
-  <button class="tablinks" onmouseover="openCity(event, '5CrearCertificado')">Crear Certificacion</button>
-  <button class="tablinks" onmouseover="openCity(event, '6tendenciaCursos')">Tendencias de Cursos</button>
-  <button class="tablinks" onmouseover="openCity(event, 'modEstadistica')">Estadistica</button>
-  <button class="tablinks" onmouseover="openCity(event, '8configuracion')">Configurar Acciones</button>
+  <button class="tablinks" onmouseover="openCity(event, 'usuarios')"><i class='Tiny material-icons'>people</i> Usuarios</button>
+  <button class="tablinks" onmouseover="openCity(event, 'Cursos')"><i class='Tiny material-icons'>playlist_add_check</i> Cursos</button>
+  <button class="tablinks" onmouseover="openCity(event, '3listaCursosUsuarios')"><i class='Tiny material-icons'>view_list</i>Usuarios Inscritos</button>
+  <button class="tablinks" onmouseover="openCity(event, '4cantUsuariosxCursos')"><i class='Tiny material-icons'>view_headline</i>Usuarios por Cursos</button>
+  <button class="tablinks" onmouseover="openCity(event, '5CrearCertificado')"><i class='Tiny material-icons'>school</i> Crear Certificacion</button>
+  <button class="tablinks" onmouseover="openCity(event, '6tendenciaCursos')"><i class='Tiny material-icons'>trending_up</i>Tendencias de Cursos</button>
+  <button class="tablinks" onmouseover="openCity(event, 'modEstadistica')"><i class='Tiny material-icons'>show_chart</i> Estadistica</button>
+  <button class="tablinks" onmouseover="openCity(event, '8configuracion')"><i class='Tiny material-icons'>tune</i> Configuración</button>
 </div>
 <!-- 1-----------------------------------------Modulo Usuarios  ------------------------------------------->
 <div id="usuarios" class="tabcontent">
@@ -387,10 +390,10 @@ input[type=text], .form-search {
                             <td>".$row['activo']."</td>
                             <td>    
                             "?> 
-                            <a href='modCursos.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar</a>
-                            <a href='modCursosImagen.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Imagen</a>
+                            <a href='modCursos.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar Generales</a>
+                            <a href='modCursosImagen.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar Icono</a>
+                            <a href='cursoDetalles.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar Detalle</a>
                             <?php echo"
-                            <a href='remove.php?id=".$row['id_calendario']."'><button type='button'>Cancelar</button></a>
                                 
                             </td>
                         </tr>"  ;
@@ -405,13 +408,15 @@ input[type=text], .form-search {
 <!-- 3-----------------------------------------Modulo Cursos por usuarios  ------------------------------------------->
 
 <div id="3listaCursosUsuarios" class="tabcontent">
-  <h3>Cantidad de Usuarios por Curso</h3>
+  <h3>Cantidad de Usuarios Inscritas a los cursos</h3>
   <p>Cantidad de usuarios por curso.</p>
   <script type="text/javascript">
       var estadistica = [];
     </script>
- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+ <script type="text/javascript" src="../js/plotly-lates.min.js"></script>
+ <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+ <script type="text/javascript" src="../js/loader.js"></script>
   <?php
       $cursos=[];
             //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
@@ -430,10 +435,10 @@ input[type=text], .form-search {
                   } else {echo "<tr><td colspan='5'><center>No se encontraron Datos</center></td></tr>";
                   }
   ?>
-
+<div id="myChart"></div>
 <div class="plotc">
-    <div id="myChart" style="width: 900px; "></div>
-    <section></section>
+    
+   
 <div id="myPlot"style="width:50%;max-width:900px"></div>
 
 <script>
@@ -447,8 +452,6 @@ input[type=text], .form-search {
     var1.push(element);
     varr2.push(counts[element]);
   } 
-
-
   const xArray = [...var1];
   const yArray = [...varr2];
 
@@ -456,17 +459,15 @@ input[type=text], .form-search {
     x:xArray,
     y:yArray,
     type:"bar",
-    //orientation: "v"
+    orientation: "v"
   }];
   const layout = {title:"Cantidad de Personas registrada en los cursos"};
   Plotly.newPlot("myPlot", data, layout);
 </script>
 
 <script>
- 
       google.charts.load("current", { packages: ["corechart"] });
       google.charts.setOnLoadCallback(drawChart);
-
       function drawChart() {
         const wArray = [];
         wArray.push(["Curso", "Num de Usuarios Inscritos"]);
@@ -478,7 +479,8 @@ input[type=text], .form-search {
 
 
         const options = {
-          title: "Porcentaje de Numero de Usuarios inscritos a Cursos"
+          //title: "Porcentaje de Numero de Usuarios inscritos a Cursos"
+          'title':'Porcentaje de Numero de Usuarios inscritos a Cursos','width':950, 'height':500
         };
 
         const chart = new google.visualization.PieChart(document.getElementById("myChart"));
@@ -489,8 +491,16 @@ input[type=text], .form-search {
 </div>
 <!--4 -----------------------------------------Estadistica  ------------------------------------------->
 <div id="4cantUsuariosxCursos" class="tabcontent">
-  <h3>Cantidad de Usuarios por cursos</h3>
-  <p>Tokyo is the capital of Japan.</p>
+  <h3>Usuarios Inscritos a Cursos</h3>
+  <p>Seleccione una opcion.</p>
+  <table class="styled-table">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Curso</th>
+                <th>Codigo</th>
+                <th>Operaciones</th>
+            </tr>
       <?php 
        $sqlc = "SELECT * FROM tb_misCursos ";
        $resultc = $connect->query($sqlc);
@@ -501,18 +511,17 @@ input[type=text], .form-search {
                <tr>
                <td>".$row['nombre_usuario']."</td>
                <td>".$row['apellido_usuario']."</td>
-               <td>".$row['id_curso']."</td>
                <td>".$row['nombre_curso']."</td>
                <td>".$row['codigo_curso']."</td>
                    <td> 
-                   "?> <a href='certificado.php?id_usuario=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Generar Certificado</a>
+                   "?> <a href='certificado.php?id_usuario=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar</a>
                    <?php  ;
              }
              } else {
                  echo "<tr><td colspan='5'><center>!</center></td></tr>";
              }
     ?>
-
+</table>
 
 
 </div>
