@@ -10,6 +10,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <style>
  * {box-sizing: border-box;
@@ -263,7 +265,7 @@ input[type=text], .form-search {
   
   <button class="tablinks" onmouseover="openCity(event, 'usuarios')"><i class='Tiny material-icons'>people</i> Usuarios</button>
   <button class="tablinks" onmouseover="openCity(event, 'Cursos')"><i class='Tiny material-icons'>playlist_add_check</i> Cursos</button>
-  <button class="tablinks" onmouseover="openCity(event, '3listaCursosUsuarios')"><i class='Tiny material-icons'>view_list</i>Usuarios Inscritos</button>
+  <button class="tablinks" onmouseover="openCity(event, '3listaCursosUsuarios')"><i class='Tiny material-icons'>donut_small</i>Usuarios Inscritos</button>
   <button class="tablinks" onmouseover="openCity(event, '4cantUsuariosxCursos')"><i class='Tiny material-icons'>view_headline</i>Usuarios por Cursos</button>
   <button class="tablinks" onmouseover="openCity(event, '5CrearCertificado')"><i class='Tiny material-icons'>school</i> Crear Certificacion</button>
   <button class="tablinks" onmouseover="openCity(event, '6tendenciaCursos')"><i class='Tiny material-icons'>trending_up</i>Tendencias de Cursos</button>
@@ -275,9 +277,9 @@ input[type=text], .form-search {
   <h3>Usuarios Registrados</h3>
   <p>Selecione alguna de las opciones Disponibles para los usuarios.</p>
   <a href="../registroUsuario.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">person_add</i> Crear Usuario</a>
-  <a href="reporteUsuarios.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">library_books</i> Reporte de Usuarios</a>
-  <a href="reporteUsuariosAdmin.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">account_circle</i> Usuarios Administrativos</a>
-  <a href="#" class="button"><i class="Tiny material-icons">chrome_reader_mode</i> Ver Certificados</a>
+  <a href="reporteUsuarios.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">print</i> Reporte de Usuarios</a>
+  <a href="reporteUsuariosAdmin.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">print</i> Usuarios Administrativos</a>
+
 
   <form class="form-horizontal" action="#" method="post">
     <div class="row">
@@ -319,7 +321,6 @@ input[type=text], .form-search {
                             <td>    
                             <a href='editar.php?id_calendario=".$row['id']."'><i class='Tiny material-icons'>csearch</i>Editar</a>
                             <a href='remove.php?id=".$row['id']."'><button type='button'>Eliminar</button></a>
-                                
                             </td>
                         </tr>"  ;
                       }
@@ -341,9 +342,7 @@ input[type=text], .form-search {
                         <td>    
                         "?> <a href='editarUsuario.php?id_usuario=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar</a>
                         <?php echo"
-                        <a href='editar.php?id_calendario=".$row['id']."'><i class='Tiny material-icons'>assignment_ind</i>Asignar Roll</a>
                         <a href='remove.php?id=".$row['id_calendario']."'><i class='Tiny material-icons'>delete</i>Eliminar</a>
-                            
                         </td>
                     </tr>"  ;
                   }
@@ -364,8 +363,8 @@ input[type=text], .form-search {
   <h3>Cursos</h3>
   <p>Selecione alguna operacion para realizar con cursos.</p> 
 
-  <a href="registroCursos.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">person_add</i> Crear Un Nuevo Curso</a>
-  <a href="reporteCursos.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">library_books</i> Reporte Completo de Cursos</a>
+  <a href="registroCursos.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">control_point</i> Crear Un Nuevo Curso</a>
+  <a href="reporteCursos.php" target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">print</i> Reporte Completo de Cursos</a>
    
   <table class="styled-table">
             <tr>
@@ -390,9 +389,9 @@ input[type=text], .form-search {
                             <td>".$row['activo']."</td>
                             <td>    
                             "?> 
-                            <a href='modCursos.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar Generales</a>
-                            <a href='modCursosImagen.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar Icono</a>
-                            <a href='cursoDetalles.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar Detalle</a>
+                            <a href='modCursos.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class="bi bi-pencil-square"></i>Generales</a>
+                            <a href='modCursosImagen.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>art_track</i>Icono</a>
+                            <a href='cursoDetalles.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>dvr</i>Curso</a>
                             <?php echo"
                                 
                             </td>
