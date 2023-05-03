@@ -173,7 +173,7 @@
             if($result->num_rows > 0) {
                 while($row = $result->fetch_assoc()) {
                 echo "
-                      <li><a>".$row['nombre_curso']."</a> <a href='verCursos.php?idCursos=".$row['id']."'><i class='material-icons'>local_library</i></a> <a href='borrarCurso.php?idMisCursos=".$row['id']."'><i class='material-icons'>clear</i></a></li>
+                      <li><a>".$row['nombre_curso']."</a> <a href='cursoDetalles.php?idCurso=".$row['id_curso']."'><i class='material-icons'>local_library</i></a> <a href='borrarCurso.php?idMisCursos=".$row['id']."'><i class='material-icons'>clear</i></a></li>
                     
                      ";}
               } else {
