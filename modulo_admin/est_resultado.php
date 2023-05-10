@@ -11,7 +11,7 @@ include('../conexion/conexion.php');
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <!-- Libreria de la ultima grafica --> 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
+    <link rel="stylesheet" href="../css/est_resultado.css">
     <head>
     <title>Mis Cursos - Sistema de Estimacion de Tendnecias / Inadeh / Modulo Administrador</title>
     </head>
@@ -21,42 +21,35 @@ include('../conexion/conexion.php');
         var estadisticaCantidad = [];
     </script>
 
-
+<div class='barra_busqueda'>
 <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
-    
-         <select name="cursoBuscar" id="busqueda">
+         <select class="select" name="cursoBuscar" id="busqueda">
              <option value=""> Seleccione </option> 
              <?php
                     $sql = "SELECT * FROM tb_cursos" ; 
                     $resultado = $connect->query($sql);
                     while($rows = $resultado->fetch_assoc())
-                    
                     { 
                     echo "<option value='$rows[nombre]'>$rows[nombre] $rows[codigo]</option>";
                     }
              ?>
          </select>
-     
-        <button type="submit" name="submit" >Buscar Tendencia</button>
+        <button type="submit" class="btn" name="submit" >Buscar Tendencia</button>
     </form>
-
+    </div>
 <script>
 
 </script>
     <?php
     if(isset($_POST["submit"]))
-
-    {
-      $cursoBuscar=$_POST["cursoBuscar"];
+    {   $cursoBuscar=$_POST["cursoBuscar"];
     
      $sql1 = "SELECT * FROM tb_estadistica where curso='$cursoBuscar' ORDER BY fecha ASC";
      //$sql1 = "SELECT COUNT(id_est),curso, FROM tb_estadistica GROUP BY fecha";
      $result1 = $connect->query($sql1);
      if($result1->num_rows > 0) {
-        
          while($row = $result1->fetch_assoc()) 
          { 
-      
                  $val_temp_curso=$row['curso'];
                  $val_temp_cant=$row['cantidad'];
                 ?>
@@ -71,13 +64,19 @@ include('../conexion/conexion.php');
                 }
            }
     ?>
-<div id="ultimoValor"></div>
-<p>Maximo historico de usuarios:</p><div id="max"></div>
-<p>Minimo historico de usuarios:</p><div id="min"></div>
-<p>Resultado Estadistico:</p><div id="resultEstadistica"></div>
-<div id="myPlot" style="width:100%;max-width:700px"></div>
-<div id="lista"></div>
+<div class="valores">
+    <h4>Ultimo Valor:</h4><div id="ultimoValor"></div>
+    <h4>Maximo historico de usuarios:</h4><a><div id="max"></div></a>
+    <h4>Minimo historico de usuarios:</h4><a><div id="min"></div></a>
+    <h4>Resultado Estadistico:</h4><div id="resultEstadistica"></div>
+   
+</div>
 
+    <div class="lidetalle" id="listax"></div>
+
+<div class="grafica">
+    <div id="myPlot" style="width:100%;max-width:700px"></div>
+</div>
 
 
 <script type="text/javascript">
@@ -131,19 +130,19 @@ var text ="";
      //console.log("estamos en la posicion",[x],"evaluando:",estadisticaCantidad[x])
             if (parseInt(estadisticaCantidad[x])> parseInt(estadisticaCantidad[x-1])){
             aum ++;
-            document.write("Durante el periodo Num. : "+[x]+" El numero de participantes Aumento a: "+ estadisticaCantidad[x] + ", en comparación al valor periodo anterior de " + estadisticaCantidad[x-1] + "<br>");
+            //document.write("Durante el periodo Num. : "+[x]+" El numero de participantes Aumento a: "+ estadisticaCantidad[x] + ", en comparación al valor periodo anterior de " + estadisticaCantidad[x-1] + "<br>");
                // text +="en Aumento"+ estadisticaCantidad[x] + "en comparacion al valor anterior de" + estadisticaCantidad[x-1] + "<br>";
             }else{
                 if(parseInt(estadisticaCantidad[x]) < parseInt(estadisticaCantidad[x-1])){
                     dism ++;
                     //console.log("en disminucion",estadisticaCantidad[x],"en comparacion al valor anterior de",estadisticaCantidad[x-1])
-                    document.write("Durante el periodo Num. : "+[x]+" El numero de participantes disminuyo a: "+ estadisticaCantidad[x] + ", en comparación al valor periodo anterior de " + estadisticaCantidad[x-1] + "<br>");
+               //     document.write("Durante el periodo Num. : "+[x]+" El numero de participantes disminuyo a: "+ estadisticaCantidad[x] + ", en comparación al valor periodo anterior de " + estadisticaCantidad[x-1] + "<br>");
                 
                     }else{
                     if(parseInt(estadisticaCantidad[x])=== parseInt(estadisticaCantidad[x-1])){
                         igual ++;
                        // console.log("se mantiene igual",estadisticaCantidad[x],"en comparacion al valor anterior de",estadisticaCantidad[x-1])
-                        document.write("Durante el periodo Num. : "+[x]+" El numero de participantes se mantiene de: "+ estadisticaCantidad[x] + ", en comparación al valor periodo anterior de " + estadisticaCantidad[x-1] + "<br>");
+                     //   document.write("Durante el periodo Num. : "+[x]+" El numero de participantes se mantiene de: "+ estadisticaCantidad[x] + ", en comparación al valor periodo anterior de " + estadisticaCantidad[x-1] + "<br>");
                         
 
                     }

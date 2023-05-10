@@ -15,6 +15,11 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="text/javascript" src="../js/loader.js"></script>
 <style>
+  *{
+    margin: 0;
+    padding: 0;
+   
+  }
  * {box-sizing: border-box;
  margin-left: 0px; 
 }
@@ -237,18 +242,7 @@ input[type=text], .form-search {
 </head>
 
 <body>
-            <!-- Top Barr -->
-    <div class="topnav">
-    <a class="openbtn" href="#" onclick="openNav()">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-            <div class="search-container">
-              <form action="/action_page.php">
-                <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
-              </form>
-            </div>
-        </div>
+         
   <header>
   <h2>Sistema de Estimacion de Tendencias</h2>
 <img src="../img/logo.png"  height="50px" alt="logo"><br>
@@ -273,6 +267,7 @@ input[type=text], .form-search {
   <button class="tablinks" onmouseover="openCity(event, 'modEstadistica')"><i class='Tiny material-icons'>show_chart</i> Historial</button>
   <button class="tablinks" onmouseover="openCity(event, '8configuracion')"><i class='Tiny material-icons'>tune</i> Configuración</button>
 </div>
+
 <!-- 1-----------------------------------------Modulo Usuarios  ------------------------------------------->
 <div id="usuarios" class="tabcontent">
   <h3>Usuarios Registrados</h3>
@@ -586,7 +581,7 @@ input[type=text], .form-search {
 <div id="modEstadistica" class="tabcontent">
   <h3>Historial de Inscripciónes de usuarios por cursos</h3>
   <p>Estadistica de todos los cursos a los que los usuarios se han inscrito a lo largo del tiempo.</p>
-  <a href="est_resultado.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">assessment</i> Ver Estadistica</a>
+  <a href="est_resultado.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1200,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">assessment</i> Ver Estadistica</a>
   <!-- <iframe name="FRAMENAME" src="est_resultado.php" width="1000" height="1000"style="z-index:10000" height="40" frameborder="0" scrolling="no" allowautotransparency=true></iframe> -->
 </div>
 <!--8-----------------------------------------Configuracion  ------------------------------------------->
