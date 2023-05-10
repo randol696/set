@@ -13,6 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="../js/loader.js"></script>
 <style>
  * {box-sizing: border-box;
  margin-left: 0px; 
@@ -267,9 +268,9 @@ input[type=text], .form-search {
   <button class="tablinks" onmouseover="openCity(event, 'Cursos')"><i class='Tiny material-icons'>playlist_add_check</i> Cursos</button>
   <button class="tablinks" onmouseover="openCity(event, '3listaCursosUsuarios')"><i class='Tiny material-icons'>donut_small</i>Usuarios Inscritos</button>
   <button class="tablinks" onmouseover="openCity(event, '4cantUsuariosxCursos')"><i class='Tiny material-icons'>view_headline</i>Usuarios por Cursos</button>
-  <button class="tablinks" onmouseover="openCity(event, '5CrearCertificado')"><i class='Tiny material-icons'>school</i> Crear Certificacion</button>
-  <button class="tablinks" onmouseover="openCity(event, '6tendenciaCursos')"><i class='Tiny material-icons'>trending_up</i>Tendencias de Cursos</button>
-  <button class="tablinks" onmouseover="openCity(event, 'modEstadistica')"><i class='Tiny material-icons'>show_chart</i> Estadistica</button>
+  
+  <button class="tablinks" onmouseover="openCity(event, '6tendenciaCursos')"><i class='Tiny material-icons'>school</i> Crear Certificacion</button>
+  <button class="tablinks" onmouseover="openCity(event, 'modEstadistica')"><i class='Tiny material-icons'>show_chart</i> Historial</button>
   <button class="tablinks" onmouseover="openCity(event, '8configuracion')"><i class='Tiny material-icons'>tune</i> Configuración</button>
 </div>
 <!-- 1-----------------------------------------Modulo Usuarios  ------------------------------------------->
@@ -372,7 +373,8 @@ input[type=text], .form-search {
                 <th>Nombre</th>
                 <th>Horas</th>
                 <th>Activo</th>
-                <th>Operaciones</th>
+                <th>Generales</th>
+           
             </tr>
             <?php
             //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
@@ -389,9 +391,9 @@ input[type=text], .form-search {
                             <td>".$row['activo']."</td>
                             <td>    
                             "?> 
-                            <a href='modCursos.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class="bi bi-pencil-square"></i>Generales</a>
-                            <a href='modCursosImagen.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>art_track</i>Icono</a>
-                            <a href='cursoDetalles.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>dvr</i>Curso</a>
+                            <a href='modCursos.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>extension</i></a>
+                            <a href='modCursosImagen.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>panorama</i></a>
+                            <a href='cursoDetalles.php?id_curso=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>local_library</i></a>
                             <?php echo"
                                 
                             </td>
@@ -498,7 +500,7 @@ input[type=text], .form-search {
                 <th>Apellido</th>
                 <th>Curso</th>
                 <th>Codigo</th>
-                <th>Operaciones</th>
+               
             </tr>
       <?php 
        $sqlc = "SELECT * FROM tb_misCursos ";
@@ -512,8 +514,7 @@ input[type=text], .form-search {
                <td>".$row['apellido_usuario']."</td>
                <td>".$row['nombre_curso']."</td>
                <td>".$row['codigo_curso']."</td>
-                   <td> 
-                   "?> <a href='certificado.php?id_usuario=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Editar</a>
+                   "?> 
                    <?php  ;
              }
              } else {
@@ -525,19 +526,22 @@ input[type=text], .form-search {
 
 </div>
 <!--5 -----------------------------------------Certificado  ------------------------------------------->
-<div id="5CrearCertificado" class="tabcontent">
-  <h3>Certificacion</h3>
-  <p>Haga click en el participante para crear la certificacion</p>
+
+
+<!--6 -----------------------------------------Estadistica  ------------------------------------------->
+<div id="6tendenciaCursos" class="tabcontent">
+  <h3>Certificación</h3>
+  <p>Seleccione en el Icono generar certificado</p>
   <table class="styled-table">
             <tr>
-                <th>Nomre</th>
-                <th>Apellido</th>
-                <th>Correo</th>
-                <th>Operaciones</th>
+                <th>Nomre Curso</th>
+                <th>Integrantes</th>
+                
             </tr>
+            <tr>
             <?php
             //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
-                $sqlc = "SELECT * FROM tb_usuario ";
+                $sqlc = "SELECT * FROM tb_cursos ";
                 $resultc = $connect->query($sqlc);
                 if($resultc->num_rows > 0) {
                     while($row = $resultc->fetch_assoc()) 
@@ -545,26 +549,42 @@ input[type=text], .form-search {
                     echo "
                         <tr>
                         <td>".$row['nombre']."</td>
-                        <td>".$row['apellido']."</td>
-                        <td>".$row['correo']."</td>
-                            <td> 
-                            "?> <a href='certificado.php?id_usuario=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>edit</i>Generar Certificado</a>
-                            <?php  ;
+                        <td> <ul> "?> 
+                              
+                              <?php $valtemp=$row['id'];
+                             $sqlu = "SELECT * FROM tb_misCursos where id_curso = $valtemp";
+                             $resultu = $connect->query($sqlu);
+                             if($resultu->num_rows > 0) {
+                                 while($row = $resultu->fetch_assoc()) 
+                                 {
+                                  
+                                 echo "<li>";
+                                 echo $row['nombre_usuario']." ".$row['apellido_usuario']?>
+                                 <a href='certificado.php?idmisCursos=<?php echo $row['id'] ?>'  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=no,location=no,status=no,menubar=no'); return false;" ><i class='Tiny material-icons'>open_in_new</i> Certificado</a> 
+                                 <?php "
+                                  </li>";
+                                }
+                                } else {
+
+
+                              }
+
+                          
                       }
                       } else {
                           echo "<tr><td colspan='5'><center>!</center></td></tr>";
                       }
+                      "</ul></td></tr>"
     ?>
     </table>
-</div>
-<!--6 -----------------------------------------Estadistica  ------------------------------------------->
-<div id="6tendenciaCursos" class="tabcontent">
-  <h3>Tendencia de Cursos</h3>
-  <p>Tokyo is the capital of Japan.</p>
+
+
+
+
 </div>
 <!--7-----------------------------------------Estadistica  ------------------------------------------->
 <div id="modEstadistica" class="tabcontent">
-  <h3>Estadistica Cursos</h3>
+  <h3>Historial de Inscripciónes de usuarios por cursos</h3>
   <p>Estadistica de todos los cursos a los que los usuarios se han inscrito a lo largo del tiempo.</p>
   <a href="est_resultado.php"  target="_blank" onclick="window.open(this.href,this.target,'width=1000,height=950,top=5,left=5,toolbar=yes,location=no,status=no,menubar=yes');return false;" class="button"><i class="Tiny material-icons">assessment</i> Ver Estadistica</a>
   <!-- <iframe name="FRAMENAME" src="est_resultado.php" width="1000" height="1000"style="z-index:10000" height="40" frameborder="0" scrolling="no" allowautotransparency=true></iframe> -->

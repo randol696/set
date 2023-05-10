@@ -19,47 +19,26 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
 <body>
-<div class="sidebar">
-    <ul class="nav-links">
-        <li>
-          <a href="#" class="active">
-            <i class='bx bx-grid-alt' ></i>
-          </a>
-        </li>
-        
-    </ul>
-</div>
+
 
 <div class="home-section">
     
-
-    <div class="sidebar-button">
-        <nav>
-            <img src="../img/<?php echo $cursosRow['foto']; ?>" height="40" width="50">
-            <?php echo $cursosRow['nombre']; ?>
-            <div class="search-box">
-         
-            </div>
+  
+    <div class="info">
+          
+          <h3><?php echo $cursosRow['nombre']; ?></h3>
+          <a href="dashboard.php"><i class="material-icons">navigate_before</i></a>
+          <img src="../img/<?php echo $cursosRow['foto']; ?>" height="90" width="120">
             
-        </nav>
-
-
-
+      </div>
         <div class="home-content">
             <div class="overview-boxes">
-
-          <div class="box">
-          
-        
-        </div>  
-
                 <div class="box">
-                <table class="styled-table">
+                <table>
                   <tr>
                       <th width=200>Fecha</th>
                       <th width=175>Categoria</th>
                       <th width=300>Detalle</th>
-                      <th width=175>Operaciones</th>
                   </tr>
                   <?php
                     $id_curso = $_GET['idCurso'];  
@@ -78,7 +57,7 @@
                                   ?><a><i class="material-icons">list</i> Material de Clase</a><?php 
                                   break;
                                 case 2:
-                                 
+                            
                                   ?><a><i class="material-icons">import_contacts</i> Tarea</a><?php
                                   break;
                                 case 3:
@@ -90,7 +69,7 @@
                               }
                               echo "</td>
                               <td>".$row['detalle_categoria']."</td>
-                              <td><a  href='borrarDetalleCurso.php?id_curso=".$row['id']."'><i class='Tiny material-icons'>close</i>Borrar</a></td>
+                            
                           </tr>"  ;
                             }
                           } else {

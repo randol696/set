@@ -8,7 +8,11 @@
     $nombreUsuario= $userrow['nombre'];
     $apellidoUsuario=$userrow['apellido']
 ?>
-
+<link rel="stylesheet" href="../css/style.css">
+<html>
+    <head></head>
+<body>
+<div class="detalle_curso">
 <?php             
 if (isset($_GET['idMisCursos'])) {
     $idCursos = $_GET['idMisCursos'];  
@@ -36,7 +40,7 @@ if (isset($_GET['idMisCursos'])) {
     
         if($connect->query($sql1) === TRUE) {
             echo "<h3>Se ha Eliminado el curso </h3>";
-            echo "<a href='dashboard.php'><button type='button'>Regresar</button></a>";
+            header("Location: dashboard.php");
         } else {
             echo "Error " . $sql1 . ' ' . $connect;
         }
@@ -45,3 +49,6 @@ if (isset($_GET['idMisCursos'])) {
 
      
      ?>
+     </div>
+</body>
+</html>

@@ -45,7 +45,7 @@ table#alter th {
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Correo</th>
-                <th>roll</th>
+          
             </tr>
 
             <?php
@@ -59,7 +59,7 @@ table#alter th {
                         <td>".$row['nombre']."</td>
                         <td>".$row['apellido']."</td>
                         <td>".$row['correo']."</td>
-                        <td>".$row['roll_id']."</td>
+                  
                     </tr>"  ;
                   }
 

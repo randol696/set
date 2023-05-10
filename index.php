@@ -23,7 +23,7 @@
   <li style="float:right"><a href="#" class="fa fa-instagram"></a></li>
   <li style="float:right"><a href="#" class="fa fa-facebook"></a></li>
   <li style="float:right"><a href="#" class="fa fa-twitter"></a></li>
-  <li style="float:right"><a class="active" href="#about">Transparencia</a></li>
+
 </ul>
 
 
@@ -32,7 +32,7 @@
   <nav>
   <div id="form">
       <form method="POST" action="seguridad/login_accion.php">
-        <a>Acceso al sistema<br></a>
+     
         <a>Usuario:</a>
         <input type="text" name="email" class="textbox" >
         <a>Contraseña:</a>
@@ -45,40 +45,33 @@
     </nav>
 
     <article>
-    <h2>Cursos </h2>
+    <h3>Cursos </h3>
     <p>Estos son los cursos ofertados en el Inadeh Guarare.</p>
 <!-- Busqueda -->
-  <div id="search">
-    <form action="/action_page.php">
-      <input type="text" class="search_barr" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i>Busqueda</button>
-    </form>
-  </div>
-<!-- Listado de Cursos -->
+      <div id="search">
+        <form action="/action_page.php">
+       
+        </form>
+      </div>
+<!-- Listado de Cursos 'style='width:100%' -->
 
 <!-- Portfolio Gallery Grid -->
 <div class="row">
-  
       <?php
             //$sql = "SELECT * FROM tb_cursos WHERE status='por confirmar' OR status='pendiente' OR status='confirmado' OR status='Realizado'";
-                $sql = "SELECT * FROM tb_cursos ";
+                $sql = "SELECT * FROM tb_cursos WHERE activo ='Activo'";
                 $result = $connect->query($sql);
                 if($result->num_rows > 0) {
                     while($row = $result->fetch_assoc()) 
                     {
                     echo "<div class='column'>
                           <div class='content'>
-                            <img src='img/".$row['foto']." 'style='width:100%'>
-                            <h5>".$row['nombre']."</h5>
-                            <p>".$row['codigo']."</p><p>Horas: ".$row['horas']."</p>
+                            <img src='img/".$row['foto']."'>
+                            <p>".$row['nombre']."</p>
+                            <p>Horas: ".$row['horas']."</p>
                               <div class='btn-cursos'>
                                 <a href='verCursosDetalle.php?idCursos=".$row['id']."'><button type='button'>Detalle</button></a>
                               </div>
-
-                              <div class='btn-adwishlist'>
-                              <button>Añadir a Lista de Deseos</button>
-                              </div>
-
                           </div>
                           </div> ";
                       }
@@ -93,6 +86,7 @@
 <!-- Footer -->
 <footer>
   <p>Trabajo final de Graduacion UTP Azuero Estudiantes: Ariel Gonzalez / Randol H Gonzalez</p>
+  <p><a href=https://github.com/randol696/set>Github</a></p>
 </footer>
 
 </body>

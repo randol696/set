@@ -68,10 +68,10 @@
  
 /* */ 
 table{
-    width: 100%;
+    width: 90%;
 }
 th{
-    background-color: blanchedalmond;
+    background-color: rgba(255, 235, 205, 0.242);
 }
 table, th, td {  
     /*border: 1px solid black;   */
@@ -114,7 +114,25 @@ table#alter th {
 }
 
 .input{
-
   width:100px; 
   height:50px;
+}
+
+.info{
+  padding-top: 10px;
+ 
+  background-color: rgb(42, 49, 126);
+  width:100%;
+}
+.info h3{
+  padding-left: 100px;
+  color: white;
+}
+.info a{
+  padding-left: 20px;
+  color:#b6eaf6;
+}
+
+.info img{
+  margin-left: 30px;
 }

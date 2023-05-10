@@ -30,7 +30,7 @@
 }
 
 .underline {
-  border-bottom: 1px solid #777;
+  border-bottom: 1px solid #fff;
   padding: 5px;
   margin-bottom: 15px;
 }
@@ -50,14 +50,17 @@
 
 body {
   padding: 20px 0;
-  background: #ccc;
+  background-image: url("../img/certificado.jpg");
+  background-repeat: no-repeat;
+  background-size: 900px 700px;
+  /*background: #FFFFFF; */
 }
 
 .pm-certificate-container {
   position: relative;
   width: 800px;
   height: 600px;
-  background-color: #618597;
+  background-color: #FFFFFF;
   padding: 30px;
   color: #333;
   font-family: 'Open Sans', sans-serif;
@@ -187,8 +190,11 @@ body {
 
 
             <?php
-            $idUsuario = $_GET['id_usuario'];  
-            $sql1 = "SELECT * FROM tb_usuario where id = $idUsuario";
+            date_default_timezone_set('America/Panama'); 
+            $timestamp = date('m-d-Y', time());
+
+            $idmisCursos = $_GET['idmisCursos'];  
+            $sql1 = "SELECT * FROM tb_misCursos where id = $idmisCursos";
             $result1 = $connect->query($sql1);
             if($result1->num_rows > 0) {
                 while($row = $result1->fetch_assoc()) 
@@ -199,17 +205,17 @@ body {
 
 <div style="width:800px; height:600px; padding:20px; text-align:center; border: 10px solid #787878">
 <div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid #787878">
-       <span style="font-size:50px; font-weight:bold">Certificate of Completion</span>
+       <span style="font-size:50px; font-weight:bold">Certificado de Finalización</span>
        <br><br>
-       <span style="font-size:25px"><i>This is to certify that</i></span>
+       <span style="font-size:25px"><i>Certifica a:</i></span>
        <br><br>
-       <span style="font-size:30px"><b><?php echo $row['nombre'], $row['apellido'] ?></b></span><br/><br/>
-       <span style="font-size:25px"><i>has completed the course</i></span> <br/><br/>
-       <span style="font-size:30px">$course.getName()</span> <br/><br/>
-       <span style="font-size:20px">with score of <b>$grade.getPoints()%</b></span> <br/><br/><br/><br/>
-       <span style="font-size:25px"><i>dated</i></span><br>
-      #set ($dt = $DateFormatter.getFormattedDate($grade.getAwardDate(), "MMMM dd, yyyy"))
-      <span style="font-size:30px">$dt</span>
+       <span style="font-size:30px"><b><?php echo $row['nombre_usuario'], " ".$row['apellido_usuario'] ?></b></span><br/><br/>
+       <span style="font-size:25px"><i>ha completado satisfactoriamente el curso:</i></span> <br/><br/>
+       <span style="font-size:30px"><?php echo $row['nombre_curso']?></span> <br/><br/>
+   
+       <span style="font-size:25px"><i><?php echo $timestamp ?></i></span><br>
+     
+      <span style="font-size:30px"><img src="../img/logo.png"  height="50px" alt="logo"></span>
 </div>
 </div>
  <?php ;

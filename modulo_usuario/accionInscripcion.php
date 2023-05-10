@@ -8,7 +8,12 @@
     $nombreUsuario= $userrow['nombre'];
     $apellidoUsuario=$userrow['apellido']
 ?>
+<link rel="stylesheet" href="../css/style.css">
 
+<html>
+    <head></head>
+<body>
+<div class="detalle_curso">
 <?php             
 if (isset($_GET['idCursos'])) {
     $idCursos = $_GET['idCursos'];  
@@ -23,11 +28,13 @@ if (isset($_GET['idCursos'])) {
                     echo 
                     
                     "
+                    <div class='form_post'>
                     <form method='post'>
-                    <input type=text' name='txtnombre' value='$nombreCurso'/>
-                    <input type=text' name='txtnombre' value='$codigoCurso'/>
+                    <input type='hidden' name='txtnombre' value='$nombreCurso' />
+                    <input type='hidden' name='txtnombre' value='$codigoCurso' />
 
-                    <button type='submit'>Confirmar Curso</button>
+                    <button type='submit' class='btn'>Confirmar Curso</button>
+                    </div>
                     ";
                 }
             } else {
@@ -35,25 +42,26 @@ if (isset($_GET['idCursos'])) {
             }
             
      }
-     echo $idUsuario;
-     echo $nombreUsuario; 
-     echo $apellidoUsuario;
+   /* $idUsuario;
+     $nombreUsuario; 
+     $apellidoUsuario;
 
-     echo $idCurso;
-     echo $nombreCurso;
+    $idCurso; */
+     echo "<a>$nombreCurso</a>";;
     
-     echo $codigoCurso;
+     $codigoCurso;
      if($_POST) { 
         $sql1 = "INSERT INTO tb_misCursos (id_usuario, nombre_usuario, apellido_usuario, id_curso, nombre_curso, codigo_curso )VALUES ('$idUsuario', '$nombreUsuario', '$apellidoUsuario','$idCurso','$nombreCurso','$codigoCurso' ) ";
-    
         if($connect->query($sql1) === TRUE) {
-            echo "<h3>Se ha Registrado el curso Satisfactoriamente </h3>";
-            echo "<a href='dashboard.php'><button type='button'>Regresar</button></a>";
+    
+            echo '<script>alert("Se ha Registrado el curso Satisfactoriamente ")</script>';
+            header("Location: dashboard.php");
         } else {
             echo "Error " . $sql1 . ' ' . $connect;
         }
-     
         $connect->close();
-
      }
      ?>
+</div>
+</body>
+</html>

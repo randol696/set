@@ -32,7 +32,7 @@
                 <table >
                 <tr>
                     <th>Nombre del curso</th>
-                    <th>Codigo</th>
+
                     <th>Operaciones </th>
                 </tr>
                 <?php 
@@ -43,7 +43,7 @@
                             echo "
                             <tr>
                                 <td><a>".$row['nombre_curso']."</a> </td>
-                                <td><a>".$row['Codigo_curso']."</a> </td>
+                               
                                 <td><a href='eliminarWishList.php?para=".$row['id']."'><i class='material-icons'></i>Eliminar</a></td>
                             </tr>";}
                     } else {

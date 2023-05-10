@@ -1,3 +1,6 @@
+*{
+  font-family: 'Poppins', sans-serif;
+}
 /* Style the header */
 header {
     /*background-color: #56aaef; */ 
@@ -15,11 +18,13 @@ header {
 nav {
     float: left;
     width: 30%;
-    height: 500px; /* only for demonstration, should be removed */
-    background: #ccc;
+    height: 500%; /* only for demonstration, should be removed */
+    background: #122c74;
     padding: 20px;
   }
-  
+  nav a{
+    color: white;
+  }
   /* Style the list inside the menu */
   nav ul {
     list-style-type: none;
@@ -159,9 +164,14 @@ nav {
    
 
   /* Add padding BETWEEN each column (if you want) */
+  article{
+  
+    background: linear-gradient(135deg, rgba(218, 199, 237, 0.161) 23%, rgba(15, 188, 236, 0.116) 100%); 
+  }
 .row,
 .row > .column {
   padding: 10px;
+  
 }
 
 /* Create four equal columns that floats next to each other */
@@ -180,13 +190,15 @@ nav {
 
 /* Content */
 .content {
-  background-color: rgba(230, 230, 230, 0.538);
+  background: linear-gradient(135deg, rgba(238, 174, 55, 0.161) 23%, rgba(15, 188, 236, 0.116) 100%); 
   padding: 10px;
-  height: 450px;
+  height: 50%;
 }
 
 .content img{
-    padding-left: 0%;
+    padding-left: 20%;
+    width: 50%;
+    height: 50%;
 }
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 900px) {
@@ -202,12 +214,16 @@ nav {
   }
 
   .btn-group button {
-    background-color: #755db8; /* Green background */
-    border: 1px solid rgb(148, 132, 223); /* Green border */
+    background-color: #22b6d7; /* Green background */
+    border: 1px solid #22b6d7; /* Green border */
     color: white; /* White text */
     padding: 30px 45%; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
     float: left; /* Float the buttons side by side */
+  }
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #3e53dd;
   }
 
   /* Clear floats (clearfix hack) */
@@ -221,27 +237,77 @@ nav {
     border-right: none; /* Prevent double borders */
   }
   
-  /* Add a background color on hover */
-  .btn-group button:hover {
-    background-color: #3e8e41;
-  }
+  
 
 /* botones de en cursos*/ 
-.btn-cursos button {
-    background-color: #755db8; /* Green background */
-    border: 1px solid rgb(148, 132, 223); /* Green border */
+.content .btn-cursos button {
+    background-color: #22b6d7; /* Green background */
+    border: 1px solid #22b6d7; /* Green border */
     color: white; /* White text */
-    padding: 10px 35%; /* Some padding */
+    padding: 20px 39%; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
+    /*float: left; /* Float the buttons side by side */
   }
 
   .btn-adwishlist button {
-    background-color: #d7d5db; /* Green background */
-    border: 1px solid rgb(148, 132, 223); /* Green border */
+    background-color: #22b6d7; /* Green background */
+    border: 1px solid #22b6d7; /* Green border */
     color: white; /* White text */
     padding: 10px 35%; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
     float: left; /* Float the buttons side by side */
     margin-top: 5px;
+  }
+
+  .box{
+    background-color: #22b6d7;
+    width: 100px;
+    height: 200px;
+  }
+
+  .detalle_curso{
+    margin-top: 100px;
+    margin-left: 100px;
+    background: linear-gradient(135deg, rgba(32, 31, 102, 0.714) 23%, rgba(64, 143, 165, 0.724) 100%); 
+    width: 70%;
+    height: 300px;
+    border-radius: 20px;
+    box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.5);
+  }
+  .detalle_curso img{
+    position: absolute;
+    margin-top:5px;
+    margin-left:40%;
+    border-radius: 20px;
+  }
+
+  .detalle_curso a{
+    margin-top:30px;
+    margin-left:10px;
+    font-size: 20px;
+    color:#fffdfd;
+  }
+  .detalle_curso p{
+    margin-top:10px;
+    margin-left:10px;
+    font-size: 10px;
+    color:#fffdfd;
+  }
+  .detalle_curso .info_curso{
+    padding-top:20px;
+    padding-left:40px;
+  }
+
+  .detalle_curso .form_post{
+    padding-top:20px;
+    padding-left:40px;
+  }
+  .detalle_curso .btn{
+    color:#fffdfd;
+    cursor: pointer;
+    padding-top:20px;
+    margin-left:25%;
+    width:40%;
+    background-color:#04AA6D;
+    border: none;
   }

@@ -43,17 +43,17 @@ if (isset($_GET['idCursos'])) {
      echo $nombreCurso;
     
      echo $codigoCurso;
-     if($_POST) { 
+     //if($_POST) { 
         $sql1 = "INSERT INTO tb_wishlist (id_usuario, nombre_usuario, apellido_usuario, id_curso, nombre_curso, codigo_curso )VALUES ('$idUsuario', '$nombreUsuario', '$apellidoUsuario','$idCurso','$nombreCurso','$codigoCurso' ) ";
     
         if($connect->query($sql1) === TRUE) {
             echo "<h3>Se ha Registrado el curso Satisfactoriamente </h3>";
-            echo "<a href='dashboard.php'><button type='button'>Regresar</button></a>";
+            header("Location: dashboard.php");
         } else {
             echo "Error " . $sql1 . ' ' . $connect;
         }
      
         $connect->close();
 
-     }
+  //   }
      ?>
